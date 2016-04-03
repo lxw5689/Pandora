@@ -12,9 +12,11 @@ class PDPhotoItem: PDMediaItem {
     
     var photoCount: NSInteger
     var photoDesc: String?
+    var detailRef: String?
     
-    init(url: String?, thumbUrl: String?, coverWidth: Float, coverHeight: Float, photoCount: Int) {
-        self.photoCount = photoCount;
+    init(url: String?, href: String?, thumbUrl: String?, coverWidth: Float, coverHeight: Float, photoCount: Int) {
+        self.photoCount = photoCount
+        self.detailRef = href
         
         super.init(url: url, thumbUrl: thumbUrl, coverWidth: coverWidth, coverHeight: coverHeight)
     }

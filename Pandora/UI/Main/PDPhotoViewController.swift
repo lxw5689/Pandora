@@ -131,6 +131,17 @@ class PDPhotoViewController: UICollectionViewController {
     }
 
     // MARK: UICollectionViewDelegate
+    
+    override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        let photoItem: PDPhotoItem? = (self.dataSource?.mediaItemDataArr()?[indexPath.item]) as? PDPhotoItem
+        if photoItem != nil && photoItem!.detailRef != nil {
+            
+            let photoDetailVC = PDPhotoDetailViewController.instanceFromNib()
+            photoDetailVC.phDetailHref = photoItem?.detailRef
+            
+            self.presentViewController(photoDetailVC, animated: true, completion: nil)
+        }
+    }
 
     /*
     // Uncomment this method to specify if the specified item should be highlighted during tracking

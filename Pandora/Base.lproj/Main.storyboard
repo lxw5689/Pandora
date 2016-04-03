@@ -159,8 +159,8 @@
         <!--Photo Detail View Controller-->
         <scene sceneID="aad-wo-PRT">
             <objects>
-                <collectionViewController id="1G4-O1-QRf" customClass="PDPhotoDetailViewController" customModule="Pandora" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="Qge-No-ZW5">
+                <collectionViewController storyboardIdentifier="PDPhotoDetailViewController" id="1G4-O1-QRf" customClass="PDPhotoDetailViewController" customModule="Pandora" customModuleProvider="target" sceneMemberID="viewController">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" dataMode="prototypes" id="Qge-No-ZW5">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="b7o-B6-2pm">
@@ -170,14 +170,51 @@
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="ZXZ-un-OEa">
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="PDPhotoCell" id="ZXZ-un-OEa" customClass="PDPhotoCell" customModule="Pandora" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.5" width="604" height="599"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                     <rect key="frame" x="0.0" y="0.0" width="604" height="599"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="O0w-hM-DTj">
+                                            <rect key="frame" x="0.0" y="0.0" width="604" height="599"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="7GD-Vy-hRm">
+                                                    <rect key="frame" x="182" y="235" width="240" height="128"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="128" id="tCR-9J-rdU"/>
+                                                        <constraint firstAttribute="width" constant="240" id="xde-z1-asT"/>
+                                                    </constraints>
+                                                </imageView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="7GD-Vy-hRm" secondAttribute="bottom" constant="236" id="CGH-6Q-t0Q"/>
+                                                <constraint firstItem="7GD-Vy-hRm" firstAttribute="top" secondItem="O0w-hM-DTj" secondAttribute="top" constant="235" id="F0j-Zk-xEu"/>
+                                                <constraint firstAttribute="trailing" secondItem="7GD-Vy-hRm" secondAttribute="trailing" constant="182" id="Jg8-1t-gJg"/>
+                                                <constraint firstItem="7GD-Vy-hRm" firstAttribute="leading" secondItem="O0w-hM-DTj" secondAttribute="leading" constant="182" id="JoN-Gz-vq7"/>
+                                            </constraints>
+                                        </scrollView>
+                                    </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
+                                <color key="backgroundColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstItem="O0w-hM-DTj" firstAttribute="leading" secondItem="ZXZ-un-OEa" secondAttribute="leading" id="0WY-qc-oCv"/>
+                                    <constraint firstAttribute="trailing" secondItem="O0w-hM-DTj" secondAttribute="trailing" id="CEb-5k-n7W"/>
+                                    <constraint firstAttribute="bottom" secondItem="O0w-hM-DTj" secondAttribute="bottom" id="KTI-rA-48k"/>
+                                    <constraint firstItem="O0w-hM-DTj" firstAttribute="top" secondItem="ZXZ-un-OEa" secondAttribute="top" id="KYo-NQ-r8h"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="contentScrollView" destination="O0w-hM-DTj" id="aIR-oI-za1"/>
+                                    <outlet property="photoView" destination="7GD-Vy-hRm" id="4hH-Fw-Rcx"/>
+                                    <outlet property="picBottomCons" destination="CGH-6Q-t0Q" id="EXo-dw-WjW"/>
+                                    <outlet property="picHeightCons" destination="tCR-9J-rdU" id="JTW-al-9C9"/>
+                                    <outlet property="picLeadingCons" destination="JoN-Gz-vq7" id="NAv-Ik-wlU"/>
+                                    <outlet property="picTopCons" destination="F0j-Zk-xEu" id="xgV-Kc-vDp"/>
+                                    <outlet property="picTrailCons" destination="Jg8-1t-gJg" id="fuc-K3-YTu"/>
+                                    <outlet property="picWidthCons" destination="xde-z1-asT" id="dph-u3-I3S"/>
+                                </connections>
                             </collectionViewCell>
                         </cells>
                         <connections>

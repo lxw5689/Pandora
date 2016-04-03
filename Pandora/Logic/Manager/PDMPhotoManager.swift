@@ -95,6 +95,13 @@ class PDMPhotoManager {
                         
                         return Float(str)!
                     })
+                    
+                    let hrefReg = try NSRegularExpression(pattern: "(?<=<a href=\").*?(?=\"\\starget)", options: .CaseInsensitive)
+                    let hrefArr = hrefReg.matchesInString(value, options: .ReportCompletion, range: NSMakeRange(0, value.characters.count)).map({ (result) -> String in
+                        let index1 = htmlString.startIndex.advancedBy(result.range.location)
+                        let index2 = htmlString.startIndex.advancedBy(result.range.location + result.range.length)
+                        return value.substringWithRange(Range<String.Index>(index1 ..< index2))
+                    })
 
                     
                     let imageReg = try NSRegularExpression(pattern: "(?<=src=\").*?(?=\">)", options: .CaseInsensitive)
@@ -121,7 +128,7 @@ class PDMPhotoManager {
                         imageSrc = (thumbsrc?.substringToIndex(range!.startIndex))! + (thumbsrc?.substringFromIndex(range!.endIndex))!
                     }
                     
-                    let item: PDPhotoItem = PDPhotoItem(url: imageSrc, thumbUrl: thumbsrc, coverWidth: widths.first!, coverHeight: heights.first!, photoCount: picCnts.first!)
+                    let item: PDPhotoItem = PDPhotoItem(url: imageSrc, href: hrefArr.first, thumbUrl: thumbsrc, coverWidth: widths.first!, coverHeight: heights.first!, photoCount: picCnts.first!)
                     
                     return item
                     
