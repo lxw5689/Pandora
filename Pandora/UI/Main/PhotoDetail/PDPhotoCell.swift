@@ -28,9 +28,6 @@ class PDPhotoCell: UICollectionViewCell {
     func setPhotoItem(item: PDPhotoItem) {
         
         self.item = item
-        guard item.coverUrl != self.url else {
-            return
-        }
         self.photoView.image = nil
         if self.isLoading && item.coverUrl != self.url  && self.url != nil {
             PDDownloader.sharedDownloader.cancelImageRequest(self.url!)

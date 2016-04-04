@@ -56,8 +56,18 @@ class PDPhotoDetailViewController: UICollectionViewController {
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath) as! PDPhotoCell
         
-        let photoItem = PDPhotoDetailManager.sharedManager.photoItems[indexPath.item]
+        let items = PDPhotoDetailManager.sharedManager.photoItems
+        let photoItem = items[indexPath.item]
         cell.setPhotoItem(photoItem)
+        
+        if indexPath.item + 5 < items.count {
+            let cnt = min((indexPath.item + 5), items.count)
+            for index in (indexPath.item + 1) ..< cnt {
+                let itm = items[index]
+                PDDownloader.sharedDownloader.requestImage(itm.coverUrl!, completion: nil)
+            }
+        }
+        
         
         return cell
     }
