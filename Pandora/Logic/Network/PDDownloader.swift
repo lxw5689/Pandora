@@ -20,6 +20,7 @@ class PDDownloader: NSObject, NSURLSessionDataDelegate {
         var url: String
         var completions: Array<PDMCompletion>
         var cacher: PDDownloadCacher
+        var compCnt: Int = 0
         
         init(task: NSURLSessionDataTask, url: String, completion: PDMCompletion?) {
             
@@ -87,6 +88,7 @@ class PDDownloader: NSObject, NSURLSessionDataDelegate {
                 if completion != nil {
                     self.lock.lock()
                     item!.completions.append(completion!)
+                    item!.compCnt = item!.compCnt + 1
                     self.lock.unlock()
                 }
                 
@@ -118,7 +120,9 @@ class PDDownloader: NSObject, NSURLSessionDataDelegate {
 //            print("found cache!!!")
             if completion != nil {
                 let image: UIImage? = UIImage(contentsOfFile: cachePath!)
-                completion!(image, nil)
+                dispatch_async(dispatch_get_main_queue()) {
+                      completion!(image, nil)
+                }
             }
             return
         }
@@ -130,14 +134,35 @@ class PDDownloader: NSObject, NSURLSessionDataDelegate {
             if error == nil  && cachePath != nil {
                 let image: UIImage? = UIImage(contentsOfFile: cachePath!)
                 if completion != nil {
-                    completion!(image, nil)
+                    dispatch_async(dispatch_get_main_queue()) {
+                        completion!(image, nil)
+                    }
                 }
             } else {
                 if completion != nil {
-                    completion!(nil, error)
+                    dispatch_async(dispatch_get_main_queue()) {
+                        completion!(nil, error)
+                    }
                 }
             }
             
+        })
+    }
+    
+    func cancelImageRequest(url: String) {
+        
+        dispatch_async(self.downloadQueue, {
+            let item = self.getDownloadItem(url)
+            if item != nil {
+                self.lock.lock()
+                item!.compCnt = item!.compCnt - 1
+                let remainCnt = item!.compCnt
+                if remainCnt <= 0 {
+                    item!.task.cancel()
+                    self.taskDict.removeValueForKey(item!.task)
+                }
+                self.lock.unlock()
+            }
         })
     }
     

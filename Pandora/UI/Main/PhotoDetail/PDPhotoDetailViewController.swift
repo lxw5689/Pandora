@@ -35,6 +35,13 @@ class PDPhotoDetailViewController: UICollectionViewController {
         if self.phDetailHref != nil {
             PDPhotoDetailManager.sharedManager.requestPhotoDetail(self.phDetailHref!)
         }
+        
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(PDPhotoDetailViewController.tapAction))
+        self.collectionView?.addGestureRecognizer(tapGesture)
+    }
+    
+    func tapAction() {
+        self.dismissViewControllerAnimated(true, completion: nil)
     }
     
     func updateUI() {
