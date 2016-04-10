@@ -77,6 +77,20 @@ class PDDownloader: NSObject, NSURLSessionDataDelegate {
         return foundItem
     }
     
+    func requestData(url: String, ignoreCache: Bool, completion: PDMCompletion?) {
+        if !ignoreCache {
+            let (hasCache, cachePath) = PDDownloadCacher.sharedCacher.hasCache(url)
+            if hasCache && cachePath != nil {
+                if completion != nil {
+                    completion!(cachePath, nil)
+                    return
+                }
+            }
+        }
+        
+        self.requestData(url, completion: completion)
+    }
+    
     func requestData(url: String, completion: PDMCompletion?) {
         
         dispatch_async(self.downloadQueue, {

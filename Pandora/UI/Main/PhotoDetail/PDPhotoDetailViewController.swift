@@ -19,6 +19,7 @@ class PDPhotoDetailViewController: UICollectionViewController {
     }
     
     var phDetailHref: String?
+    var tapGesture: UITapGestureRecognizer!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,8 +37,9 @@ class PDPhotoDetailViewController: UICollectionViewController {
             PDPhotoDetailManager.sharedManager.requestPhotoDetail(self.phDetailHref!)
         }
         
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(PDPhotoDetailViewController.tapAction))
-        self.collectionView?.addGestureRecognizer(tapGesture)
+        self.tapGesture = UITapGestureRecognizer(target: self, action: #selector(PDPhotoDetailViewController.tapAction))
+        self.tapGesture.numberOfTapsRequired = 1
+        self.collectionView?.addGestureRecognizer(self.tapGesture!)
     }
     
     func tapAction() {
@@ -67,7 +69,7 @@ class PDPhotoDetailViewController: UICollectionViewController {
                 PDDownloader.sharedDownloader.requestImage(itm.coverUrl!, completion: nil)
             }
         }
-        
+        self.tapGesture!.requireGestureRecognizerToFail(cell.doubleTapGesture)
         
         return cell
     }

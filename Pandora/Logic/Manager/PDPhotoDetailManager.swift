@@ -23,7 +23,7 @@ class PDPhotoDetailManager {
     
     func requestPhotoDetail(url: String) {
         self.photoItems = []
-        PDDownloader.sharedDownloader.requestData(url) { (path, error) in
+        PDDownloader.sharedDownloader.requestData(url, ignoreCache: false) { (path, error) in
             if error != nil {
                 print("get photo detail fail...")
             } else if path != nil {
