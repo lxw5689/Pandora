@@ -8,7 +8,7 @@
 
 import UIKit
 
-private let reuseIdentifier = "PDPhotoCell"
+private let reuseIdentifier = "PDPhotoCellEx"
 
 class PDPhotoDetailViewController: UICollectionViewController {
     
@@ -33,6 +33,8 @@ class PDPhotoDetailViewController: UICollectionViewController {
                                                          name: "updatePhotoDetailUI",
                                                          object: nil)
         
+        self.collectionView?.registerClass(PDPhotoCellEx.self, forCellWithReuseIdentifier: reuseIdentifier)
+        
         if self.phDetailHref != nil {
             PDPhotoDetailManager.sharedManager.requestPhotoDetail(self.phDetailHref!)
         }
@@ -56,7 +58,7 @@ class PDPhotoDetailViewController: UICollectionViewController {
     }
     
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath) as! PDPhotoCell
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath) as! PDPhotoCellEx
         
         let items = PDPhotoDetailManager.sharedManager.photoItems
         let photoItem = items[indexPath.item]

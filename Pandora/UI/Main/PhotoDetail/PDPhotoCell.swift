@@ -37,8 +37,12 @@ class PDPhotoCell: UICollectionViewCell, UIScrollViewDelegate {
         self.zoomed = false
         self.url = nil
         self.contentScrollView.delegate = self
-        self.contentScrollView.zoomScale = 1.0
-        self.contentScrollView.minimumZoomScale = 1.0
+        self.contentScrollView.minimumZoomScale = 1
+        self.contentScrollView.maximumZoomScale = 1
+        self.contentScrollView.zoomScale = 1
+        self.photoView.frame = self.contentScrollView.bounds
+        self.contentScrollView.zoomScale = 1
+        print("....")
     }
     
     func setPhotoItem(item: PDPhotoItem) {
@@ -81,19 +85,15 @@ class PDPhotoCell: UICollectionViewCell, UIScrollViewDelegate {
             let hRate = scrSize.height / imgSize.height
             
             let minRate = min(wRate, hRate)
-            let w = minRate * imgSize.width
-            let h = minRate * imgSize.height
+            self.contentScrollView.minimumZoomScale = minRate
+            self.contentScrollView.maximumZoomScale = 2
             
-            self.contentScrollView.maximumZoomScale = w / h * 2
-            
+            print("minScale:\(minRate) imageSize:\(imgSize)")
+            print("cons:\(self.photoViewTopCons.constant), \(self.photoViewBottomCons.constant), \(self.photoViewLeadingCons.constant), \(self.photoViewTrailingCons.constant)")
+
             self.photoView.image = image
-            let vGap = (self.contentScrollView.bounds.height - h) / 2
-            let hGap = (self.contentScrollView.bounds.width - w) / 2
-            
-            self.photoViewTopCons.constant = vGap
-            self.photoViewBottomCons.constant = vGap
-            self.photoViewLeadingCons.constant = hGap
-            self.photoViewTrailingCons.constant = hGap
+            self.photoView.frame = CGRectMake(0, 0, imgSize.width, imgSize.height)
+            self.contentScrollView.zoomScale = minRate
             
             self.contentScrollView.pinchGestureRecognizer?.removeTarget(self, action: #selector(PDPhotoCell.onPinchGesture))
             self.contentScrollView.pinchGestureRecognizer?.addTarget(self, action: #selector(PDPhotoCell.onPinchGesture))
@@ -102,12 +102,12 @@ class PDPhotoCell: UICollectionViewCell, UIScrollViewDelegate {
     
     func onDoubleTapGesture(gesture: UITapGestureRecognizer) {
         
-        var point = gesture.locationInView(self.photoView)
+        var point = gesture.locationInView(self.contentScrollView)
         
         var zoomScale = self.contentScrollView.maximumZoomScale
-        if self.zoomed {
+        if self.contentScrollView.zoomScale >= zoomScale {
             point = CGPointMake(self.photoView.bounds.width / 2, self.photoView.bounds.height / 2)
-            zoomScale = 1.0
+            zoomScale = self.contentScrollView.minimumZoomScale
         }
         let zoomSize = CGSizeMake(self.contentScrollView.bounds.width / zoomScale, self.contentScrollView.bounds.height / zoomScale)
         
@@ -128,45 +128,19 @@ class PDPhotoCell: UICollectionViewCell, UIScrollViewDelegate {
         
     }
     
-    func scrollViewDidZoom(scrollView: UIScrollView) {
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        print("scollview fr:\(self.contentScrollView.frame), contentSize:\(self.contentScrollView.contentSize), offset:\(self.contentScrollView.contentOffset), inset:\(self.contentScrollView.contentInset) photoviewfr:\(self.photoView.frame)")
+        print("zoomScale:\(self.contentScrollView.zoomScale)")
+        var fr = self.photoView.frame
+        fr.origin = CGPointZero
         
-        self.zoomed = !self.zoomed
-        self.updatePhotoViewConstraint()
-    }
-    
-    func updatePhotoViewConstraint() {
-        
-        var w = self.photoView.frame.width
-        var h = self.photoView.frame.height
-        let image = self.photoView.image
-        if let image = image {
-            if !self.zoomed {
-                let imgSize = image.size
-                let scrSize = UIScreen.mainScreen().bounds.size
-                let wRate = scrSize.width / imgSize.width
-                let hRate = scrSize.height / imgSize.height
-                
-                let minRate = min(wRate, hRate)
-                w = minRate * imgSize.width
-                h = minRate * imgSize.height
-            }
+        if fr.width < self.contentScrollView.frame.width {
+            fr.origin.x = (self.contentScrollView.frame.width - fr.width ) / 2
         }
-        
-
-        
-        var wGap = (self.contentScrollView.frame.width - w) / 2
-        var hGap = (self.contentScrollView.frame.height - h) / 2
-        if wGap < 0 {
-            wGap = 0
+        if fr.height < self.contentScrollView.frame.height {
+            fr.origin.y = (self.contentScrollView.frame.height - fr.height) / 2
         }
-        if hGap < 0 {
-            hGap = 0
-        }
-        
-        self.photoViewTopCons.constant = hGap
-        self.photoViewBottomCons.constant = hGap
-        self.photoViewLeadingCons.constant = wGap
-        self.photoViewTrailingCons.constant = wGap
-        self.layoutIfNeeded()
+        self.photoView.frame = fr
     }
 }

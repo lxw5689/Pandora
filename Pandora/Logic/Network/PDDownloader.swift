@@ -13,24 +13,41 @@ class PDDownloader: NSObject, NSURLSessionDataDelegate {
     
     typealias PDMCompletion = (String?, NSError?) -> Void
     typealias PDMImageCompletion = (UIImage?, NSError?) -> Void
+    typealias PDMProgressNotify = (CGFloat) -> Void
     
     class PDDownloadItem: NSObject {
         
         var task: NSURLSessionDataTask
         var url: String
         var completions: Array<PDMCompletion>
+        var progressNotifiers: Array<PDMProgressNotify>
         var cacher: PDDownloadCacher
         var compCnt: Int = 0
+        var contentLength: Int = 0
+        var downloadedLength: Int = 0
+        var progress: CGFloat {
+            get {
+                if contentLength <= 0 {
+                    return 0
+                } else {
+                    return CGFloat(self.downloadedLength) / CGFloat(self.contentLength)
+                }
+            }
+        }
         
-        init(task: NSURLSessionDataTask, url: String, completion: PDMCompletion?) {
+        init(task: NSURLSessionDataTask, url: String, completion: PDMCompletion?, progress: PDMProgressNotify?) {
             
             self.task = task
             self.url = url
             self.completions = Array<PDMCompletion>()
+            self.progressNotifiers = Array<PDMProgressNotify>()
             self.cacher = PDDownloadCacher()
             
             if completion != nil {
                 self.completions.append(completion!)
+            }
+            if progress != nil {
+                self.progressNotifiers.append(progress!)
             }
             
             super.init()
@@ -92,7 +109,10 @@ class PDDownloader: NSObject, NSURLSessionDataDelegate {
     }
     
     func requestData(url: String, completion: PDMCompletion?) {
-        
+        self.requestData(url, progressNotify: nil, completion: completion)
+    }
+    
+    func requestData(url: String, progressNotify: PDMProgressNotify?, completion: PDMCompletion?) {
         dispatch_async(self.downloadQueue, {
             
             let item = self.getDownloadItem(url)
@@ -106,6 +126,15 @@ class PDDownloader: NSObject, NSURLSessionDataDelegate {
                     self.lock.unlock()
                 }
                 
+                if progressNotify != nil {
+                    self.lock.lock()
+                    item!.progressNotifiers.append(progressNotify!)
+                    if completion == nil {
+                        item!.compCnt = item!.compCnt + 1
+                    }
+                    self.lock.unlock()
+                }
+                
                 return
             }
             
@@ -114,34 +143,37 @@ class PDDownloader: NSObject, NSURLSessionDataDelegate {
             
             let task: NSURLSessionDataTask = self.session!.dataTaskWithRequest(urlReq)
             
-            let dlItem = PDDownloadItem(task: task, url: url, completion: completion)
+            let dlItem = PDDownloadItem(task: task, url: url, completion: completion, progress: progressNotify)
             
             self.lock.lock()
             self.taskDict[task] = dlItem
             self.lock.unlock()
             
             task.resume()
-
+            
         })
     }
     
-    func requestImage(url: String, completion: PDMImageCompletion?) {
-        
+    func requestImage(url: String, progress: PDMProgressNotify?, completion: PDMImageCompletion?) {
         let (hasCache, cachePath) = PDDownloadCacher.sharedCacher.hasCache(url)
         
         if hasCache && cachePath != nil {
             
-//            print("found cache!!!")
+            if progress != nil {
+                dispatch_async(dispatch_get_main_queue()) {
+                    progress!(1)
+                }
+            }
             if completion != nil {
                 let image: UIImage? = UIImage(contentsOfFile: cachePath!)
                 dispatch_async(dispatch_get_main_queue()) {
-                      completion!(image, nil)
+                    completion!(image, nil)
                 }
             }
             return
         }
         
-        self.requestData(url, completion: {
+        self.requestData(url, progressNotify: progress, completion: {
             
             (cachePath, error) in
             
@@ -161,6 +193,11 @@ class PDDownloader: NSObject, NSURLSessionDataDelegate {
             }
             
         })
+
+    }
+    
+    func requestImage(url: String, completion: PDMImageCompletion?) {
+        self.requestImage(url, progress: nil, completion: completion)
     }
     
     func cancelImageRequest(url: String) {
@@ -188,10 +225,12 @@ extension PDDownloader {
     func URLSession(session: NSURLSession, dataTask: NSURLSessionDataTask, didReceiveResponse response: NSURLResponse, completionHandler: (NSURLSessionResponseDisposition) -> Void) {
         
 //        print("received response \(response)")
+//        print("contentlength:\(response.expectedContentLength)")
         
         completionHandler(.Allow)
         
         let item = self.taskDict[dataTask]
+        item?.contentLength = Int(response.expectedContentLength)
         
         if let dlItem = item {
             
@@ -208,6 +247,20 @@ extension PDDownloader {
         if let dlItem = item {
             
             if dlItem.cacher.writeData(data) == data.length {
+                dlItem.downloadedLength += data.length
+                
+                self.lock.lock()
+                let progressArr = dlItem.progressNotifiers
+                self.lock.unlock()
+                let progress = dlItem.progress
+                
+                if progressArr.count > 0 {
+                    dispatch_async(dispatch_get_main_queue()) {
+                        for progressNotifier in progressArr {
+                            progressNotifier(progress)
+                        }
+                    }
+                }
             } else {
                 print("write data fail..")
             }

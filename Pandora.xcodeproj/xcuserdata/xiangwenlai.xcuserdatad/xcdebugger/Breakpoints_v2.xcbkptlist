@@ -20,12 +20,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Pandora/UI/Main/PhotoDetail/PDPhotoCell.swift"
-            timestampString = "481991439.556937"
+            timestampString = "482167643.525334"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "158"
-            endingLineNumber = "158"
-            landmarkName = "updatePhotoViewConstraint()"
+            startingLineNumber = "45"
+            endingLineNumber = "45"
+            landmarkName = "prepareForReuse()"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -36,13 +36,125 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Pandora/UI/Main/PhotoDetail/PDPhotoCell.swift"
-            timestampString = "481991439.556937"
+            timestampString = "482167647.390781"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "151"
-            endingLineNumber = "151"
-            landmarkName = "updatePhotoViewConstraint()"
+            startingLineNumber = "43"
+            endingLineNumber = "43"
+            landmarkName = "prepareForReuse()"
             landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Pandora/UI/Main/PhotoDetail/PDPhotoCell.swift"
+            timestampString = "482339140.905384"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "95"
+            endingLineNumber = "95"
+            landmarkName = "setImage(_:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Pandora/UI/Main/PhotoDetail/PDPhotoCell.swift"
+            timestampString = "482339141.925107"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "98"
+            endingLineNumber = "98"
+            landmarkName = "setImage(_:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Pandora/UI/Main/PhotoDetail/PDPhotoCell.swift"
+            timestampString = "482339385.407292"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "110"
+            endingLineNumber = "110"
+            landmarkName = "onDoubleTapGesture(_:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Pandora/UI/Main/PhotoDetail/PDPhotoCell.swift"
+            timestampString = "482339386.491233"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "114"
+            endingLineNumber = "114"
+            landmarkName = "onDoubleTapGesture(_:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Pandora/UI/Main/PhotoDetail/PDProgressView.swift"
+            timestampString = "482595971.064897"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "37"
+            endingLineNumber = "37"
+            landmarkName = "drawRect(_:)"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Pandora.PDProgressView.drawRect (__C.CGRect) -&gt; ()"
+                  moduleName = "Pandora"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xiangwenlai/WorkPlace/Pandora/Pandora/UI/Main/PhotoDetail/PDProgressView.swift"
+                  timestampString = "482595971.072598"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "37"
+                  endingLineNumber = "37"
+                  offsetFromSymbolStart = "110">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Pandora.PDProgressView.drawRect (__C.CGRect) -&gt; ()"
+                  moduleName = "Pandora"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xiangwenlai/WorkPlace/Pandora/Pandora/UI/Main/PhotoDetail/PDProgressView.swift"
+                  timestampString = "482595971.072744"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "37"
+                  endingLineNumber = "37"
+                  offsetFromSymbolStart = "161">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

@@ -19,9 +19,11 @@
 		9E3B6EA61CB151F2004AA314 /* PDPhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E3B6EA51CB151F2004AA314 /* PDPhotoCell.swift */; };
 		9E3B6EA81CB1630A004AA314 /* PDPhotoDetailManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E3B6EA71CB1630A004AA314 /* PDPhotoDetailManager.swift */; };
 		9E4409531CAD77F100032A2C /* PDUIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E4409521CAD77F100032A2C /* PDUIImageView.swift */; };
+		9E451A2F1CC3379400FABBBD /* PDProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E451A2E1CC3379400FABBBD /* PDProgressView.swift */; };
 		9E50B0481CA97CF0008F673A /* PDMPhotoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E50B0471CA97CF0008F673A /* PDMPhotoManager.swift */; };
 		9EA1F7F51CA7BDF300D4C4D8 /* PDDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EA1F7F41CA7BDF300D4C4D8 /* PDDownloader.swift */; };
 		9EA1F7F71CA7C2B500D4C4D8 /* PDDownloadCacher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EA1F7F61CA7C2B500D4C4D8 /* PDDownloadCacher.swift */; };
+		9EB30FF21CBFEB0100E555DA /* PDPhotoCellEx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EB30FF11CBFEB0100E555DA /* PDPhotoCellEx.swift */; };
 		9EBD49671C9552F3007B7F50 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EBD49661C9552F3007B7F50 /* AppDelegate.swift */; };
 		9EBD496C1C9552F3007B7F50 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9EBD496A1C9552F3007B7F50 /* Main.storyboard */; };
 		9EBD49711C9552F3007B7F50 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9EBD496F1C9552F3007B7F50 /* LaunchScreen.storyboard */; };
@@ -58,9 +60,11 @@
 		9E3B6EA51CB151F2004AA314 /* PDPhotoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PDPhotoCell.swift; sourceTree = "<group>"; };
 		9E3B6EA71CB1630A004AA314 /* PDPhotoDetailManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PDPhotoDetailManager.swift; sourceTree = "<group>"; };
 		9E4409521CAD77F100032A2C /* PDUIImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PDUIImageView.swift; sourceTree = "<group>"; };
+		9E451A2E1CC3379400FABBBD /* PDProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PDProgressView.swift; sourceTree = "<group>"; };
 		9E50B0471CA97CF0008F673A /* PDMPhotoManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PDMPhotoManager.swift; sourceTree = "<group>"; };
 		9EA1F7F41CA7BDF300D4C4D8 /* PDDownloader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PDDownloader.swift; sourceTree = "<group>"; };
 		9EA1F7F61CA7C2B500D4C4D8 /* PDDownloadCacher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PDDownloadCacher.swift; sourceTree = "<group>"; };
+		9EB30FF11CBFEB0100E555DA /* PDPhotoCellEx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PDPhotoCellEx.swift; sourceTree = "<group>"; };
 		9EBD49631C9552F3007B7F50 /* Pandora.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pandora.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9EBD49661C9552F3007B7F50 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9EBD496B1C9552F3007B7F50 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -123,6 +127,8 @@
 			children = (
 				9E3B6EA31CB148C0004AA314 /* PDPhotoDetailViewController.swift */,
 				9E3B6EA51CB151F2004AA314 /* PDPhotoCell.swift */,
+				9EB30FF11CBFEB0100E555DA /* PDPhotoCellEx.swift */,
+				9E451A2E1CC3379400FABBBD /* PDProgressView.swift */,
 			);
 			path = PhotoDetail;
 			sourceTree = "<group>";
@@ -360,10 +366,12 @@
 				9E3B6E9F1CB146FB004AA314 /* PDMediaItemCell.swift in Sources */,
 				9E50B0481CA97CF0008F673A /* PDMPhotoManager.swift in Sources */,
 				9E2CD2E81CB01014008F8C24 /* PDMLoadMoreView.swift in Sources */,
+				9EB30FF21CBFEB0100E555DA /* PDPhotoCellEx.swift in Sources */,
 				9EA1F7F51CA7BDF300D4C4D8 /* PDDownloader.swift in Sources */,
 				9EBD49671C9552F3007B7F50 /* AppDelegate.swift in Sources */,
 				9E4409531CAD77F100032A2C /* PDUIImageView.swift in Sources */,
 				9EDB0EB21C9D7FC900B0F791 /* PDMediaCollectionViewLayout.swift in Sources */,
+				9E451A2F1CC3379400FABBBD /* PDProgressView.swift in Sources */,
 				9EDB0EA71C9D35B800B0F791 /* PDMediaItem.swift in Sources */,
 				9E3B6EA11CB146FB004AA314 /* PDVideoViewController.swift in Sources */,
 				9E3B6EA81CB1630A004AA314 /* PDPhotoDetailManager.swift in Sources */,
@@ -502,6 +510,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = Pandora/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -517,6 +526,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = Pandora/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
