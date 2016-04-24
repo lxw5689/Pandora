@@ -10,10 +10,7 @@ import UIKit
 
 private let reuseIdentifier = "PDPhotoCellEx"
 
-class PDPhotoDetailViewController: UIViewController,
-                                    UICollectionViewDataSource,
-                                    UICollectionViewDelegate,
-                                    UIScrollViewDelegate {
+class PDPhotoDetailViewController: UIViewController {
     
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var pageIndexLabel: UILabel!
@@ -30,6 +27,21 @@ class PDPhotoDetailViewController: UIViewController,
     
     var phDetailHref: String?
     var tapGesture: UITapGestureRecognizer!
+    var animImageView: UIImageView? {
+        didSet {
+            if animImageView != nil {
+                let cell = self.collectionView.cellForItemAtIndexPath(NSIndexPath(forItem: 0, inSection: 0)) as? PDPhotoCellEx
+                if cell != nil {
+                    cell?.animImageView = animImageView
+                    self.animImageView = nil
+                }
+                else {
+                    self.view.insertSubview(animImageView!, belowSubview: loadingView)
+                }
+            }
+        }
+    }
+    var curIndex: Int = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -63,9 +75,26 @@ class PDPhotoDetailViewController: UIViewController,
         let layout: UICollectionViewFlowLayout = self.collectionView.collectionViewLayout as! UICollectionViewFlowLayout
         layout.itemSize = CGSizeMake(CGRectGetWidth(self.collectionView.bounds), CGRectGetHeight(self.collectionView.bounds))
         layout.minimumLineSpacing = 0
+        
+        if self.animImageView != nil {
+            self.animImageView!.center = CGPointMake(self.view.frame.width / 2, self.view.frame.height / 2)
+        }
     }
     
     func tapAction() {
+        if self.curIndex == 0 {
+            let cell = self.collectionView.cellForItemAtIndexPath(NSIndexPath(forItem: self.curIndex, inSection: 0)) as? PDPhotoCellEx
+            if cell != nil {
+                let image = cell!.photoView.image
+                let fr = cell?.scrollView.convertRect((cell?.photoView.frame)!, toView: self.view.window)
+                
+                if image != nil && fr != nil {
+                    self.dismissAnimator.fromFr = fr
+                    self.dismissAnimator.fromImage = image
+                    self.dismissAnimator.toFr = self.presentAnimator.imageFromFr
+                }
+            }
+        }
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
@@ -78,8 +107,10 @@ class PDPhotoDetailViewController: UIViewController,
         }
         self.loadingView.stopAnimating()
     }
-    
-    //MARK : uicollection view datasource
+}
+
+//MARK: UICollectionViewDataSource
+extension PDPhotoDetailViewController : UICollectionViewDataSource {
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return PDPhotoDetailManager.sharedManager.photoItems.count
     }
@@ -90,6 +121,11 @@ class PDPhotoDetailViewController: UIViewController,
         let items = PDPhotoDetailManager.sharedManager.photoItems
         let photoItem = items[indexPath.item]
         cell.setPhotoItem(photoItem)
+        
+        if self.animImageView != nil {
+            cell.animImageView = self.animImageView
+            self.animImageView = nil
+        }
         
         if indexPath.item + 5 < items.count {
             let cnt = min((indexPath.item + 5), items.count)
@@ -102,17 +138,24 @@ class PDPhotoDetailViewController: UIViewController,
         
         return cell
     }
+}
+
+//MARK: UICollectionViewDelegate
+extension PDPhotoDetailViewController : UICollectionViewDelegate {
     
     func scrollViewDidScroll(scrollView: UIScrollView) {
         let halfWidth = scrollView.frame.width / 2
         let index = Int((scrollView.contentOffset.x + halfWidth) / scrollView.frame.width)
         let items = PDPhotoDetailManager.sharedManager.photoItems
         
-        self.pageIndexLabel.text = "\(index + 1)/\(items.count)"
+        if items.count > 0 {
+            self.pageIndexLabel.text = "\(index + 1)/\(items.count)"
+            self.curIndex = index
+        }
     }
 }
 
-//MARK : UIViewControllerTransitioningDelegate
+//MARK: UIViewControllerTransitioningDelegate
 extension PDPhotoDetailViewController : UIViewControllerTransitioningDelegate {
     
     func animationControllerForPresentedController(presented: UIViewController, presentingController presenting: UIViewController, sourceController source: UIViewController) -> UIViewControllerAnimatedTransitioning? {

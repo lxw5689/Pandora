@@ -24,8 +24,6 @@ class PDPhotoViewController: UICollectionViewController {
     var layout: PDMediaCollectionViewLayout?
     var dataSource: PDMediaPhotoDataSource?
     var refleshControl: UIRefreshControl?
-    var selectFr: CGRect?
-    var selectImage: UIImage?
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -139,12 +137,13 @@ class PDPhotoViewController: UICollectionViewController {
         if photoItem != nil && photoItem!.detailRef != nil {
             
             let cell = collectionView.cellForItemAtIndexPath(indexPath)
-            let fr = collectionView.convertRect(cell!.frame, toView: self.view)
-            self.selectFr = fr
-            self.selectImage = (cell as? PDMediaItemCell)?.coverView.image
+            let fr = collectionView.convertRect(cell!.frame, toView: self.view.window!)
+            let selectImage = (cell as? PDMediaItemCell)?.coverView.image
             
             let photoDetailVC = PDPhotoDetailViewController.instanceFromNib()
             photoDetailVC.phDetailHref = photoItem?.detailRef
+            photoDetailVC.presentAnimator.imageFromFr = fr
+            photoDetailVC.presentAnimator.image = selectImage
             
             self.presentViewController(photoDetailVC, animated: true, completion: nil)
         }

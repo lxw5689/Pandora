@@ -29,6 +29,7 @@ class PDProgressView: UIView {
     
     init() {
         super.init(frame: CGRectMake(0, 0, PDProgressViewSize, PDProgressViewSize))
+        self.backgroundColor = UIColor.clearColor()
     }
     
     override func drawRect(rect: CGRect) {
@@ -36,8 +37,6 @@ class PDProgressView: UIView {
         
         if let ctx = ctx {
             UIGraphicsPushContext(ctx)
-            
-            CGContextClearRect(ctx, rect)
             CGContextBeginPath(ctx)
             CGContextAddArc(ctx, rect.width / 2, rect.height / 2, (rect.width / 2 - 4), CGFloat(-M_PI_2), CGFloat(-M_PI_2) + CGFloat(M_PI * 2) * self.progress, 0)
             CGContextSetStrokeColorWithColor(ctx, UIColor.whiteColor().CGColor)

@@ -17,11 +17,25 @@ class PDPhotoCellEx: UICollectionViewCell, UIScrollViewDelegate {
     var isLoading: Bool = false {
         didSet {
             self.progressView.hidden = !isLoading
+            if animImageView != nil && !isLoading {
+                self.animImageView?.removeFromSuperview()
+                self.animImageView = nil
+            }
         }
     }
     var zoomed: Bool = false
     var item: PDPhotoItem?
     var doubleTapGesture: UITapGestureRecognizer!
+    var animImageView: UIImageView? {
+        didSet {
+            if animImageView != nil && isLoading {
+                self.scrollView.insertSubview(animImageView!, belowSubview: self.progressView)
+            } else if animImageView != nil && !isLoading{
+                animImageView?.removeFromSuperview()
+                animImageView = nil
+            }
+        }
+    }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -121,9 +135,7 @@ class PDPhotoCellEx: UICollectionViewCell, UIScrollViewDelegate {
             self.photoView.image = image
             self.photoView.frame = CGRectMake(0, 0, imgSize.width, imgSize.height)
             self.scrollView.zoomScale = minRate
-//            
-//            self.scrollView.pinchGestureRecognizer?.removeTarget(self, action: #selector(PDPhotoCell.onPinchGesture))
-//            self.scrollView.pinchGestureRecognizer?.addTarget(self, action: #selector(PDPhotoCell.onPinchGesture))
+
             self.setNeedsLayout()
         }
     }
@@ -151,24 +163,6 @@ class PDPhotoCellEx: UICollectionViewCell, UIScrollViewDelegate {
         self.scrollView.zoomToRect(zoomRect, animated: true)
     }
     
-//    func onPinchGesture(gesture: UIPinchGestureRecognizer) {
-//        guard !self.isLoading else {
-//            return
-//        }
-//        switch gesture.state {
-//        case .Changed:
-//            self.scrollView.setZoomScale(gesture.scale, animated: false)
-//            break
-//        case .Ended:
-//            let zoomScale = min(gesture.scale, self.scrollView.maximumZoomScale)
-//            self.scrollView.setZoomScale(zoomScale, animated: false)
-//            break
-//        default:
-//            break
-//        }
-//        
-//    }
-    
     func viewForZoomingInScrollView(scrollView: UIScrollView) -> UIView? {
         
         return self.photoView
@@ -182,9 +176,8 @@ class PDPhotoCellEx: UICollectionViewCell, UIScrollViewDelegate {
     
     override func layoutSubviews() {
         super.layoutSubviews()
+        
         self.scrollView.frame = self.bounds
-//        print("scollview fr:\(self.scrollView.frame), contentSize:\(self.scrollView.contentSize), offset:\(self.scrollView.contentOffset), inset:\(self.scrollView.contentInset) photoviewfr:\(self.photoView.frame)")
-//        print("zoomScale:\(self.scrollView.zoomScale)")
         var fr = self.photoView.frame
         fr.origin = CGPointZero
         
@@ -197,6 +190,10 @@ class PDPhotoCellEx: UICollectionViewCell, UIScrollViewDelegate {
         self.photoView.frame = fr
         if !self.progressView.hidden {
             self.progressView.center = CGPointMake(self.scrollView.frame.width / 2, self.scrollView.frame.height / 2)
+        }
+        
+        if self.animImageView != nil {
+            self.animImageView!.center = CGPoint(x: self.scrollView.frame.width / 2, y: self.scrollView.frame.height / 2)
         }
     }
 }
