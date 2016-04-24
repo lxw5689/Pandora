@@ -24,6 +24,8 @@ class PDPhotoViewController: UICollectionViewController {
     var layout: PDMediaCollectionViewLayout?
     var dataSource: PDMediaPhotoDataSource?
     var refleshControl: UIRefreshControl?
+    var selectFr: CGRect?
+    var selectImage: UIImage?
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -136,6 +138,11 @@ class PDPhotoViewController: UICollectionViewController {
         let photoItem: PDPhotoItem? = (self.dataSource?.mediaItemDataArr()?[indexPath.item]) as? PDPhotoItem
         if photoItem != nil && photoItem!.detailRef != nil {
             
+            let cell = collectionView.cellForItemAtIndexPath(indexPath)
+            let fr = collectionView.convertRect(cell!.frame, toView: self.view)
+            self.selectFr = fr
+            self.selectImage = (cell as? PDMediaItemCell)?.coverView.image
+            
             let photoDetailVC = PDPhotoDetailViewController.instanceFromNib()
             photoDetailVC.phDetailHref = photoItem?.detailRef
             
@@ -173,3 +180,4 @@ class PDPhotoViewController: UICollectionViewController {
     */
 
 }
+

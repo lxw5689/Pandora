@@ -157,71 +157,62 @@
             <point key="canvasLocation" x="980" y="8"/>
         </scene>
         <!--Photo Detail View Controller-->
-        <scene sceneID="aad-wo-PRT">
+        <scene sceneID="9tj-Ss-LKX">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="X5e-gi-Sbf" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <collectionViewController storyboardIdentifier="PDPhotoDetailViewController" id="1G4-O1-QRf" customClass="PDPhotoDetailViewController" customModule="Pandora" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" dataMode="prototypes" id="Qge-No-ZW5">
+                <viewController storyboardIdentifier="PDPhotoDetailViewController" id="d1G-M0-Sgd" customClass="PDPhotoDetailViewController" customModule="Pandora" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="CfZ-1y-HiC"/>
+                        <viewControllerLayoutGuide type="bottom" id="OKZ-43-FCE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="olR-By-BdU">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="b7o-B6-2pm">
-                            <size key="itemSize" width="604" height="599"/>
-                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                        </collectionViewFlowLayout>
-                        <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="PDPhotoCell" id="ZXZ-un-OEa" customClass="PDPhotoCell" customModule="Pandora" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.5" width="604" height="599"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="604" height="599"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="N5N-qY-5sw">
-                                            <rect key="frame" x="0.0" y="0.0" width="604" height="599"/>
-                                            <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="7GD-Vy-hRm">
-                                                    <rect key="frame" x="0.0" y="0.0" width="604" height="599"/>
-                                                </imageView>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstAttribute="trailing" secondItem="7GD-Vy-hRm" secondAttribute="trailing" id="Mgs-qe-wfX"/>
-                                                <constraint firstAttribute="bottom" secondItem="7GD-Vy-hRm" secondAttribute="bottom" id="YG8-TU-Sjy"/>
-                                                <constraint firstItem="7GD-Vy-hRm" firstAttribute="top" secondItem="N5N-qY-5sw" secondAttribute="top" id="Yoj-Qt-kxz"/>
-                                                <constraint firstItem="7GD-Vy-hRm" firstAttribute="leading" secondItem="N5N-qY-5sw" secondAttribute="leading" id="cUu-0r-4yt"/>
-                                                <constraint firstItem="7GD-Vy-hRm" firstAttribute="centerX" secondItem="N5N-qY-5sw" secondAttribute="centerX" id="fIn-pO-fa9"/>
-                                                <constraint firstItem="7GD-Vy-hRm" firstAttribute="centerY" secondItem="N5N-qY-5sw" secondAttribute="centerY" id="kAn-Gs-dYf"/>
-                                            </constraints>
-                                        </scrollView>
-                                    </subviews>
-                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                </view>
-                                <color key="backgroundColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstItem="N5N-qY-5sw" firstAttribute="leading" secondItem="ZXZ-un-OEa" secondAttribute="leading" id="HhU-zz-Hc3"/>
-                                    <constraint firstAttribute="bottom" secondItem="N5N-qY-5sw" secondAttribute="bottom" id="UPX-gx-lGw"/>
-                                    <constraint firstItem="N5N-qY-5sw" firstAttribute="top" secondItem="ZXZ-un-OEa" secondAttribute="top" id="kKA-nm-VMC"/>
-                                    <constraint firstAttribute="trailing" secondItem="N5N-qY-5sw" secondAttribute="trailing" id="nYd-mN-O36"/>
-                                </constraints>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceHorizontal="YES" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="dHI-lO-Vro">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="gv2-td-g6p">
+                                    <size key="itemSize" width="50" height="50"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells/>
                                 <connections>
-                                    <outlet property="contentScrollView" destination="N5N-qY-5sw" id="BBO-TI-3It"/>
-                                    <outlet property="photoView" destination="7GD-Vy-hRm" id="4hH-Fw-Rcx"/>
-                                    <outlet property="photoViewBottomCons" destination="YG8-TU-Sjy" id="yY8-Br-pYp"/>
-                                    <outlet property="photoViewLeadingCons" destination="cUu-0r-4yt" id="QcX-zj-Ohu"/>
-                                    <outlet property="photoViewTopCons" destination="Yoj-Qt-kxz" id="2vk-xT-zTo"/>
-                                    <outlet property="photoViewTrailingCons" destination="Mgs-qe-wfX" id="1FK-vU-9oO"/>
+                                    <outlet property="dataSource" destination="d1G-M0-Sgd" id="C30-Ad-Gzz"/>
+                                    <outlet property="delegate" destination="d1G-M0-Sgd" id="SpO-du-Xsq"/>
                                 </connections>
-                            </collectionViewCell>
-                        </cells>
-                        <connections>
-                            <outlet property="dataSource" destination="1G4-O1-QRf" id="dxq-Pp-qqg"/>
-                            <outlet property="delegate" destination="1G4-O1-QRf" id="lev-ix-WiW"/>
-                        </connections>
-                    </collectionView>
-                </collectionViewController>
+                            </collectionView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xEv-6b-3ee">
+                                <rect key="frame" x="298" y="569.5" width="4.5" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="Pky-pP-Zvt">
+                                <rect key="frame" x="282" y="281" width="37" height="37"/>
+                            </activityIndicatorView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="xEv-6b-3ee" firstAttribute="centerX" secondItem="olR-By-BdU" secondAttribute="centerX" id="2EH-eu-TuG"/>
+                            <constraint firstItem="Pky-pP-Zvt" firstAttribute="centerX" secondItem="olR-By-BdU" secondAttribute="centerX" id="4NI-2u-CbU"/>
+                            <constraint firstItem="Pky-pP-Zvt" firstAttribute="centerY" secondItem="olR-By-BdU" secondAttribute="centerY" id="Akp-D7-Gju"/>
+                            <constraint firstItem="OKZ-43-FCE" firstAttribute="top" secondItem="xEv-6b-3ee" secondAttribute="bottom" constant="10" id="HHE-y0-RUY"/>
+                            <constraint firstItem="OKZ-43-FCE" firstAttribute="top" secondItem="dHI-lO-Vro" secondAttribute="bottom" id="HUQ-f1-ReS"/>
+                            <constraint firstItem="dHI-lO-Vro" firstAttribute="leading" secondItem="olR-By-BdU" secondAttribute="leading" id="Ztp-fl-VvY"/>
+                            <constraint firstItem="dHI-lO-Vro" firstAttribute="top" secondItem="CfZ-1y-HiC" secondAttribute="bottom" constant="-20" id="i9P-vI-HSi"/>
+                            <constraint firstAttribute="trailing" secondItem="dHI-lO-Vro" secondAttribute="trailing" id="rlJ-Os-gai"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="collectionView" destination="dHI-lO-Vro" id="4lR-MH-EeG"/>
+                        <outlet property="loadingView" destination="Pky-pP-Zvt" id="MFv-O3-MK3"/>
+                        <outlet property="pageIndexLabel" destination="xEv-6b-3ee" id="Vop-gS-MlA"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Nke-U8-fd1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1696" y="15"/>
+            <point key="canvasLocation" x="1610" y="8"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="YXu-fS-XKC">

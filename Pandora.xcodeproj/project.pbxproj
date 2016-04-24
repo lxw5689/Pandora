@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9E1730531CCB7647000105B1 /* PDPhotoDetailAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E1730521CCB7647000105B1 /* PDPhotoDetailAnimator.swift */; };
 		9E2CD2E31CAFC58C008F8C24 /* PDUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E2CD2E21CAFC58C008F8C24 /* PDUtility.swift */; };
 		9E2CD2E61CB00C68008F8C24 /* PDMLoadMoreView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9E2CD2E51CB00C68008F8C24 /* PDMLoadMoreView.xib */; };
 		9E2CD2E81CB01014008F8C24 /* PDMLoadMoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E2CD2E71CB01014008F8C24 /* PDMLoadMoreView.swift */; };
@@ -48,6 +49,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9E1730521CCB7647000105B1 /* PDPhotoDetailAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PDPhotoDetailAnimator.swift; sourceTree = "<group>"; };
 		9E2CD2E21CAFC58C008F8C24 /* PDUtility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PDUtility.swift; sourceTree = "<group>"; };
 		9E2CD2E51CB00C68008F8C24 /* PDMLoadMoreView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PDMLoadMoreView.xib; sourceTree = "<group>"; };
 		9E2CD2E71CB01014008F8C24 /* PDMLoadMoreView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PDMLoadMoreView.swift; sourceTree = "<group>"; };
@@ -129,6 +131,7 @@
 				9E3B6EA51CB151F2004AA314 /* PDPhotoCell.swift */,
 				9EB30FF11CBFEB0100E555DA /* PDPhotoCellEx.swift */,
 				9E451A2E1CC3379400FABBBD /* PDProgressView.swift */,
+				9E1730521CCB7647000105B1 /* PDPhotoDetailAnimator.swift */,
 			);
 			path = PhotoDetail;
 			sourceTree = "<group>";
@@ -369,6 +372,7 @@
 				9EB30FF21CBFEB0100E555DA /* PDPhotoCellEx.swift in Sources */,
 				9EA1F7F51CA7BDF300D4C4D8 /* PDDownloader.swift in Sources */,
 				9EBD49671C9552F3007B7F50 /* AppDelegate.swift in Sources */,
+				9E1730531CCB7647000105B1 /* PDPhotoDetailAnimator.swift in Sources */,
 				9E4409531CAD77F100032A2C /* PDUIImageView.swift in Sources */,
 				9EDB0EB21C9D7FC900B0F791 /* PDMediaCollectionViewLayout.swift in Sources */,
 				9E451A2F1CC3379400FABBBD /* PDProgressView.swift in Sources */,

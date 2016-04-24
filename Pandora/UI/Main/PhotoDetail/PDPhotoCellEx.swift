@@ -33,6 +33,8 @@ class PDPhotoCellEx: UICollectionViewCell, UIScrollViewDelegate {
         self.scrollView.addGestureRecognizer(self.doubleTapGesture)
         self.scrollView.delegate = self
         self.scrollView.addSubview(self.progressView)
+        self.scrollView.showsVerticalScrollIndicator = false
+        self.scrollView.showsHorizontalScrollIndicator = false
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -102,6 +104,7 @@ class PDPhotoCellEx: UICollectionViewCell, UIScrollViewDelegate {
             let hRate = scrSize.height / imgSize.height
             
             let minRate = min(wRate, hRate)
+            
             self.scrollView.minimumZoomScale = minRate
             let whRate = imgSize.width / imgSize.height
             if whRate > 1.2 {
@@ -118,21 +121,28 @@ class PDPhotoCellEx: UICollectionViewCell, UIScrollViewDelegate {
             self.photoView.image = image
             self.photoView.frame = CGRectMake(0, 0, imgSize.width, imgSize.height)
             self.scrollView.zoomScale = minRate
-            
-            self.scrollView.pinchGestureRecognizer?.removeTarget(self, action: #selector(PDPhotoCell.onPinchGesture))
-            self.scrollView.pinchGestureRecognizer?.addTarget(self, action: #selector(PDPhotoCell.onPinchGesture))
+//            
+//            self.scrollView.pinchGestureRecognizer?.removeTarget(self, action: #selector(PDPhotoCell.onPinchGesture))
+//            self.scrollView.pinchGestureRecognizer?.addTarget(self, action: #selector(PDPhotoCell.onPinchGesture))
             self.setNeedsLayout()
         }
     }
     
     func onDoubleTapGesture(gesture: UITapGestureRecognizer) {
-        
+        guard !self.isLoading else {
+            return
+        }
         var point = gesture.locationInView(self.photoView)
         
         var zoomScale = self.scrollView.maximumZoomScale
-        if self.scrollView.zoomScale >= zoomScale {
+        let abScale = abs(self.scrollView.zoomScale - zoomScale)
+        if abScale <= 0.1 {
             point = CGPointMake(self.photoView.bounds.width / 2, self.photoView.bounds.height / 2)
             zoomScale = self.scrollView.minimumZoomScale
+            print("zoom in")
+        }
+        else {
+            print("zoom out")
         }
         let zoomSize = CGSizeMake(self.scrollView.bounds.width / zoomScale, self.scrollView.bounds.height / zoomScale)
         
@@ -141,11 +151,23 @@ class PDPhotoCellEx: UICollectionViewCell, UIScrollViewDelegate {
         self.scrollView.zoomToRect(zoomRect, animated: true)
     }
     
-    func onPinchGesture(gesture: UIPinchGestureRecognizer) {
-        
-        let zoomScale = min(gesture.scale, self.scrollView.maximumZoomScale)
-        self.scrollView.setZoomScale(zoomScale, animated: false)
-    }
+//    func onPinchGesture(gesture: UIPinchGestureRecognizer) {
+//        guard !self.isLoading else {
+//            return
+//        }
+//        switch gesture.state {
+//        case .Changed:
+//            self.scrollView.setZoomScale(gesture.scale, animated: false)
+//            break
+//        case .Ended:
+//            let zoomScale = min(gesture.scale, self.scrollView.maximumZoomScale)
+//            self.scrollView.setZoomScale(zoomScale, animated: false)
+//            break
+//        default:
+//            break
+//        }
+//        
+//    }
     
     func viewForZoomingInScrollView(scrollView: UIScrollView) -> UIView? {
         
