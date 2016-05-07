@@ -55,19 +55,33 @@ class PDPhotoCellEx: UICollectionViewCell, UIScrollViewDelegate {
         super.init(coder: aDecoder)
     }
     
+    deinit {
+        if self.url != nil && self.isLoading {
+            PDDownloader.sharedDownloader.cancelImageRequest(self.url!)
+        }
+    }
+    
     override func prepareForReuse() {
         self.isLoading = false
         self.zoomed = false
+        if self.url != nil {
+            PDDownloader.sharedDownloader.cancelImageRequest(self.url!)
+        }
         self.url = nil
+        self.item = nil
         self.photoView.frame = CGRectZero
         self.scrollView.minimumZoomScale = 1
         self.scrollView.maximumZoomScale = 1
         self.scrollView.zoomScale = 1
+        self.scrollView.frame = self.bounds
         self.progressView.progress = 0
     }
     
     func setPhotoItem(item: PDPhotoItem) {
         
+        if self.item?.coverUrl == item.coverUrl {
+            return
+        }
         self.item = item
         self.photoView.image = nil
         if self.isLoading && item.coverUrl != self.url  && self.url != nil {
@@ -81,27 +95,30 @@ class PDPhotoCellEx: UICollectionViewCell, UIScrollViewDelegate {
             self.isLoading = true
             
             PDDownloader.sharedDownloader.requestImage(item.coverUrl!, progress: {
-                 (progress) in
-                    guard item.coverUrl == self.url else {
-                        print("url is not identify, ignore progress...")
-                        return
+                 [weak self] (progress) in
+                    if let strongSelf = self {
+                        guard item.coverUrl == strongSelf.url else {
+                            print("url is not identify, ignore progress...")
+                            return
+                        }
+                        strongSelf.progressView.progress = progress
                     }
-                    self.progressView.progress = progress
-                }, completion: { (image, error) in
-                
-                    guard item.coverUrl == self.url else {
-                        print("url is not identify, ignore...")
-                        return
-                    }
-                    if error != nil {
-                        print("request photo detail fail:\(item.coverUrl!)")
-                    } else if image != nil {
-                        self.setImage(image)
-                        self.isLoading = false
-                    } else {
-                        print("request image nil...")
-                    }
-                
+                    }, completion: {[weak self] (image, error) in
+                        
+                        if let strongSelf = self {
+                            guard item.coverUrl == strongSelf.url else {
+                                print("url is not identify, ignore...")
+                                return
+                            }
+                            if error != nil {
+                                print("request photo detail fail:\(item.coverUrl!)")
+                            } else if image != nil {
+                                strongSelf.setImage(image)
+                                strongSelf.isLoading = false
+                            } else {
+                                print("request image nil...")
+                            }
+                        }
             })
         }
     }
@@ -113,7 +130,7 @@ class PDPhotoCellEx: UICollectionViewCell, UIScrollViewDelegate {
             self.scrollView.maximumZoomScale = 1.0
         } else {
             let imgSize = image!.size
-            let scrSize = UIScreen.mainScreen().bounds.size
+            let scrSize = self.scrollView.bounds.size
             let wRate = scrSize.width / imgSize.width
             let hRate = scrSize.height / imgSize.height
             
@@ -130,12 +147,11 @@ class PDPhotoCellEx: UICollectionViewCell, UIScrollViewDelegate {
                 self.scrollView.maximumZoomScale = 2
             }
             
-//            print("minScale:\(minRate) imageSize:\(imgSize)")
-            
-            self.photoView.image = image
-            self.photoView.frame = CGRectMake(0, 0, imgSize.width, imgSize.height)
+            print("minScale:\(minRate) imageSize:\(imgSize)")
             self.scrollView.zoomScale = minRate
-
+            self.photoView.image = image
+            let rect = CGRectApplyAffineTransform(CGRectMake(0, 0, imgSize.width, imgSize.height), CGAffineTransformScale(CGAffineTransformIdentity, minRate, minRate))
+            self.photoView.frame = rect
             self.setNeedsLayout()
         }
     }

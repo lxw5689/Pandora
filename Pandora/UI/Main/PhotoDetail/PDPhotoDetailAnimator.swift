@@ -35,13 +35,16 @@ class PDPhotoDetailPresentAnimator: NSObject, UIViewControllerAnimatedTransition
             let h = w / imageFromFr!.width * imageFromFr!.height
             destFr = CGRect(x: 0, y: (containerVew!.frame.height - h) / 2, width: w, height: h)
         }
-        UIView.animateWithDuration(self.transitionDuration(transitionContext), animations: { 
-            toVC.view.alpha = 1
+        let detailVC = toVC as? PDPhotoDetailViewController
+        detailVC?.collectionView.hidden = true
+        
+        UIView.animateWithDuration(self.transitionDuration(transitionContext), animations: {
             imgView.frame = destFr
+            toVC.view.alpha = 1
             }) { finish in
                 transitionContext.completeTransition(finish)
+                detailVC?.collectionView.hidden = false
                 if finish {
-                    let detailVC = toVC as? PDPhotoDetailViewController
                     if detailVC != nil {
                         detailVC!.animImageView = imgView
                     }

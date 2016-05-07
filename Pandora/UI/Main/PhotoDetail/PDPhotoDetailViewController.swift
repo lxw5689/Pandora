@@ -118,6 +118,7 @@ extension PDPhotoDetailViewController : UICollectionViewDataSource {
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath) as! PDPhotoCellEx
         
+        print("index:\(indexPath.item)")
         let items = PDPhotoDetailManager.sharedManager.photoItems
         let photoItem = items[indexPath.item]
         cell.setPhotoItem(photoItem)

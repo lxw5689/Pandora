@@ -192,7 +192,7 @@
                                 <rect key="frame" x="282" y="281" width="37" height="37"/>
                             </activityIndicatorView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="xEv-6b-3ee" firstAttribute="centerX" secondItem="olR-By-BdU" secondAttribute="centerX" id="2EH-eu-TuG"/>
                             <constraint firstItem="Pky-pP-Zvt" firstAttribute="centerX" secondItem="olR-By-BdU" secondAttribute="centerX" id="4NI-2u-CbU"/>
