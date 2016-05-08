@@ -38,19 +38,19 @@ class PDMediaItemCell: UICollectionViewCell {
         }
         
         if let phItm = self.mediaItem {
+            self.setPicNumVisible(true)
             if phItm.isKindOfClass(PDPhotoItem) {
-                
-                self.setPicNumVisible(true)
                 let photoItem = phItm as! PDPhotoItem
                 self.picNumLable.text = String(photoItem.photoCount)
-                let numSize = self.picNumLable .sizeThatFits(CGSizeZero)
-                self.picNumBGWidthCons.constant = numSize.width + 2
-                self.picNumBGHeightCons.constant = numSize.height
-                
-            }
-            else {
+            } else if phItm.isKindOfClass(PDVideoItem) {
+                let videoItem = phItm as! PDVideoItem
+                self.picNumLable.text = videoItem.duration
+            } else {
                 self.setPicNumVisible(false)
             }
+            let numSize = self.picNumLable .sizeThatFits(CGSizeZero)
+            self.picNumBGWidthCons.constant = numSize.width + 2
+            self.picNumBGHeightCons.constant = numSize.height
         }
     }
     

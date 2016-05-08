@@ -12,11 +12,15 @@ class PDVideoItem: PDMediaItem {
     
     var videoUrl: String?
     var videoDesc: String?
+    var target: String?
+    var duration: String?
     
-    init(url: String?, thumbUrl: String?, coverWidth: Float, coverHeight: Float, videoUrl: String?) {
-        self.videoUrl = videoUrl
-        
+    init(url: String?, target: String?, duration: String?, thumbUrl: String?, coverWidth: Float, coverHeight: Float, videoUrl: String?) {
         super.init(url: url, thumbUrl: thumbUrl, coverWidth: coverWidth, coverHeight: coverHeight)
+        
+        self.videoUrl = videoUrl
+        self.target = target
+        self.duration = duration
     }
     
 }

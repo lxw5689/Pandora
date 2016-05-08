@@ -10,6 +10,17 @@ import UIKit
 
 class PDVideoViewController: UICollectionViewController {
     
+    private static let reuseIdentifier = "PDMediaItemCell"
+    
+    static func instanceFromNib() -> PDVideoViewController {
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc = storyboard.instantiateViewControllerWithIdentifier("PDVideoViewController")
+        
+        return vc as! PDVideoViewController
+        
+    }
+    
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
@@ -18,13 +29,42 @@ class PDVideoViewController: UICollectionViewController {
         super.init(collectionViewLayout: layout)
     }
     
+    var layout: PDMediaCollectionViewLayout!
+    
     override func viewDidLoad() {
-        
         super.viewDidLoad()
         
-        self.collectionView!.collectionViewLayout = UICollectionViewFlowLayout()
-        self.collectionView?.backgroundColor = UIColor(red: 0.57, green: 0.45, blue: 0.98, alpha: 1);
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(PDVideoViewController.updateUI), name: PDVideoDataSource.updateUINotificationName, object: nil)
         
+        self.layout = PDMediaCollectionViewLayout(col: 2, dataSource: PDVideoManager.sharedManager.dataSource)
+        self.collectionView?.collectionViewLayout = self.layout
+        
+        PDVideoManager.sharedManager.refleshData()
+        
+    }
+    
+    func updateUI() {
+        self.collectionView?.reloadData()
+    }
+    
+    override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+        // #warning Incomplete implementation, return the number of sections
+        return 1
+    }
+    
+    override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return PDVideoManager.sharedManager.dataSource.mediaItemCount()
+    }
+    
+    override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(PDVideoViewController.reuseIdentifier, forIndexPath: indexPath)
+        
+        // Configure the cell
+        let pmCell = cell as! PDMediaItemCell
+        let item = PDVideoManager.sharedManager.dataSource.mediaItemDataArr()![indexPath.item] as! PDVideoItem
+        pmCell.mediaItem = item
+        
+        return cell
     }
     
 }

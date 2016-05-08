@@ -147,7 +147,7 @@ class PDPhotoCellEx: UICollectionViewCell, UIScrollViewDelegate {
                 self.scrollView.maximumZoomScale = 2
             }
             
-            print("minScale:\(minRate) imageSize:\(imgSize)")
+//            print("minScale:\(minRate) imageSize:\(imgSize)")
             self.scrollView.zoomScale = minRate
             self.photoView.image = image
             let rect = CGRectApplyAffineTransform(CGRectMake(0, 0, imgSize.width, imgSize.height), CGAffineTransformScale(CGAffineTransformIdentity, minRate, minRate))

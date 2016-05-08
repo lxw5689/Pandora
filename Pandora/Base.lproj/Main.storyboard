@@ -156,6 +156,83 @@
             </objects>
             <point key="canvasLocation" x="980" y="8"/>
         </scene>
+        <!--Video View Controller-->
+        <scene sceneID="L0J-ue-o8g">
+            <objects>
+                <collectionViewController storyboardIdentifier="PDVideoViewController" id="6e1-Lm-gOV" customClass="PDVideoViewController" customModule="Pandora" customModuleProvider="target" sceneMemberID="viewController">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="gGW-Yk-0kL">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="JKV-cu-2Kw">
+                            <size key="itemSize" width="273" height="192"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                        <cells>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="PDMediaItemCell" id="yYz-W7-Y4V" customClass="PDMediaItemCell" customModule="Pandora" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="273" height="192"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="273" height="192"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="e0b-Fi-Jnx">
+                                            <rect key="frame" x="0.0" y="0.0" width="273" height="192"/>
+                                            <color key="backgroundColor" red="0.8537303665" green="0.8537303665" blue="0.8537303665" alpha="1" colorSpace="calibratedRGB"/>
+                                        </imageView>
+                                        <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NXz-e0-np9">
+                                            <rect key="frame" x="225" y="165" width="45" height="24"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SvA-LV-gwO">
+                                                    <rect key="frame" x="1" y="1" width="43" height="22"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" red="1" green="0.25978724399999997" blue="0.22873320329999999" alpha="0.68436945920000003" colorSpace="calibratedRGB"/>
+                                            <constraints>
+                                                <constraint firstItem="SvA-LV-gwO" firstAttribute="leading" secondItem="NXz-e0-np9" secondAttribute="leading" constant="1" id="2DR-ws-C2P"/>
+                                                <constraint firstAttribute="bottom" secondItem="SvA-LV-gwO" secondAttribute="bottom" constant="1" id="6D0-q5-fq7"/>
+                                                <constraint firstAttribute="height" constant="24" id="6Qd-K2-ZdY"/>
+                                                <constraint firstAttribute="trailing" secondItem="SvA-LV-gwO" secondAttribute="trailing" constant="1" id="940-Ya-Irj"/>
+                                                <constraint firstAttribute="width" constant="45" id="Vem-jI-630"/>
+                                                <constraint firstItem="SvA-LV-gwO" firstAttribute="top" secondItem="NXz-e0-np9" secondAttribute="top" constant="1" id="lmc-sB-H4U"/>
+                                            </constraints>
+                                        </view>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="e0b-Fi-Jnx" secondAttribute="trailing" id="ICc-aH-huz"/>
+                                    <constraint firstAttribute="bottom" secondItem="NXz-e0-np9" secondAttribute="bottom" constant="3" id="N2H-hx-WEG"/>
+                                    <constraint firstAttribute="bottom" secondItem="e0b-Fi-Jnx" secondAttribute="bottom" id="Qw0-ye-2Ug"/>
+                                    <constraint firstAttribute="trailing" secondItem="NXz-e0-np9" secondAttribute="trailing" constant="3" id="vzV-9Y-5Lo"/>
+                                    <constraint firstItem="e0b-Fi-Jnx" firstAttribute="top" secondItem="yYz-W7-Y4V" secondAttribute="top" id="wbN-Th-grE"/>
+                                    <constraint firstItem="e0b-Fi-Jnx" firstAttribute="leading" secondItem="yYz-W7-Y4V" secondAttribute="leading" id="yTV-OT-C7D"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="coverView" destination="e0b-Fi-Jnx" id="Cpc-gV-PZa"/>
+                                    <outlet property="picNumBGHeightCons" destination="6Qd-K2-ZdY" id="fUE-Zk-bzu"/>
+                                    <outlet property="picNumBGView" destination="NXz-e0-np9" id="LRT-Dc-NUK"/>
+                                    <outlet property="picNumBGWidthCons" destination="Vem-jI-630" id="52h-dl-maf"/>
+                                    <outlet property="picNumLable" destination="SvA-LV-gwO" id="yMu-eI-x2F"/>
+                                </connections>
+                            </collectionViewCell>
+                        </cells>
+                        <connections>
+                            <outlet property="dataSource" destination="6e1-Lm-gOV" id="WsP-qd-a9Q"/>
+                            <outlet property="delegate" destination="6e1-Lm-gOV" id="c03-y8-8gu"/>
+                        </connections>
+                    </collectionView>
+                </collectionViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="i2c-Nr-gmD" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="980" y="665"/>
+        </scene>
         <!--Photo Detail View Controller-->
         <scene sceneID="9tj-Ss-LKX">
             <objects>

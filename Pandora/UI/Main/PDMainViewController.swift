@@ -19,7 +19,7 @@ class PDMainViewController: UIViewController {
     required init?(coder aDecoder: NSCoder) {
         
         let photoViewController: PDPhotoViewController = PDPhotoViewController.instanceFromNib()
-        let videoViewController: PDVideoViewController = PDVideoViewController(collectionViewLayout: UICollectionViewFlowLayout())
+        let videoViewController: PDVideoViewController = PDVideoViewController.instanceFromNib()
         
         self.vcsArr = [photoViewController, videoViewController]
         
