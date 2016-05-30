@@ -119,4 +119,31 @@ class PDDataParser {
             }
         }
     }
+    
+    func parseDetailVideo(file: String, complete:(PDVideoItem?, NSError?) -> Void) {
+        dispatch_async(self.parseQueue) {
+            do {
+                let htmlString = try String(contentsOfFile: file, encoding: NSUTF8StringEncoding)
+                let result = self.parseData(htmlString, regularText: "(?<=video_url: ').*?(?=',)")
+                
+                var vItem: PDVideoItem?
+                var error: NSError?
+                
+                if result.count > 0 {
+                     vItem = PDVideoItem(url: nil, target: nil, duration: nil, thumbUrl: nil, coverWidth: 0, coverHeight: 0, videoUrl: result.first)
+                } else {
+                    error = NSError(domain: "parse data", code: -3, userInfo: [NSLocalizedFailureReasonErrorKey: "parse data error"])
+                }
+                
+                dispatch_async(dispatch_get_main_queue(), { 
+                    complete(vItem, error)
+                })
+                
+            } catch {
+                dispatch_async(dispatch_get_main_queue(), { 
+                    complete(nil, NSError(domain: "parse data", code: -2, userInfo: [NSLocalizedFailureReasonErrorKey: "parse detail video fail..."]))
+                })
+            }
+        }
+    }
 }

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="bBj-TA-hsY">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="bBj-TA-hsY">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -232,6 +232,75 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="i2c-Nr-gmD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="980" y="665"/>
+        </scene>
+        <!--Video Detail View Controller-->
+        <scene sceneID="maa-Jm-POX">
+            <objects>
+                <viewController storyboardIdentifier="PDVideoDetailViewController" id="kWg-7f-uhr" customClass="PDVideoDetailViewController" customModule="Pandora" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="mRZ-kl-Cdi"/>
+                        <viewControllerLayoutGuide type="bottom" id="kWv-mR-DCs"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="uht-uO-C57">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0NI-sk-VXL" customClass="PDVideoPlayView" customModule="Pandora" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="20" width="600" height="580"/>
+                                <subviews>
+                                    <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="Dpl-dT-FBp">
+                                        <rect key="frame" x="282" y="272" width="37" height="37"/>
+                                    </activityIndicatorView>
+                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ble-XG-Pdf">
+                                        <rect key="frame" x="279" y="323" width="42" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="Ble-XG-Pdf" firstAttribute="top" secondItem="Dpl-dT-FBp" secondAttribute="bottom" constant="14" id="9O8-sL-CyQ"/>
+                                    <constraint firstItem="Ble-XG-Pdf" firstAttribute="centerX" secondItem="Dpl-dT-FBp" secondAttribute="centerX" id="W4y-hB-GxW"/>
+                                    <constraint firstItem="Dpl-dT-FBp" firstAttribute="centerY" secondItem="0NI-sk-VXL" secondAttribute="centerY" id="pN6-OV-TW0"/>
+                                    <constraint firstItem="Dpl-dT-FBp" firstAttribute="centerX" secondItem="0NI-sk-VXL" secondAttribute="centerX" id="r6n-oY-nme"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jo0-7k-ZbG" customClass="PDVideoProgressBar" customModule="Pandora" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="20" width="600" height="27"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="27" id="dR2-aP-C0y"/>
+                                    <constraint firstAttribute="height" constant="27" id="mrF-fL-INK"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="dR2-aP-C0y"/>
+                                    </mask>
+                                </variation>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Jo0-7k-ZbG" firstAttribute="leading" secondItem="uht-uO-C57" secondAttribute="leading" id="8zq-l6-Tgr"/>
+                            <constraint firstAttribute="trailing" secondItem="0NI-sk-VXL" secondAttribute="trailing" id="JNg-yL-Gw2"/>
+                            <constraint firstItem="0NI-sk-VXL" firstAttribute="leading" secondItem="uht-uO-C57" secondAttribute="leading" id="Trw-z9-IMj"/>
+                            <constraint firstAttribute="trailing" secondItem="Jo0-7k-ZbG" secondAttribute="trailing" id="h86-NP-Nay"/>
+                            <constraint firstItem="kWv-mR-DCs" firstAttribute="top" secondItem="0NI-sk-VXL" secondAttribute="bottom" id="nvr-UL-nm9"/>
+                            <constraint firstItem="Jo0-7k-ZbG" firstAttribute="top" secondItem="mRZ-kl-Cdi" secondAttribute="bottom" id="xuu-Mc-m5L"/>
+                            <constraint firstItem="0NI-sk-VXL" firstAttribute="top" secondItem="mRZ-kl-Cdi" secondAttribute="bottom" id="zx1-6S-osV"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="loadingView" destination="Dpl-dT-FBp" id="Csa-Ms-vyz"/>
+                        <outlet property="progressBar" destination="Jo0-7k-ZbG" id="7gP-rB-33g"/>
+                        <outlet property="tipsLabel" destination="Ble-XG-Pdf" id="HEU-Vg-2zc"/>
+                        <outlet property="videoView" destination="0NI-sk-VXL" id="INc-XN-60T"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XMb-oB-57V" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1641" y="665"/>
         </scene>
         <!--Photo Detail View Controller-->
         <scene sceneID="9tj-Ss-LKX">

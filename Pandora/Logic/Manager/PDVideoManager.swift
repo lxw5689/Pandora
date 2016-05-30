@@ -31,6 +31,18 @@ class PDVideoManager {
         self.doRequest()
     }
     
+    func requestDetailVideo(targetUrl: String, complete:(PDVideoItem?, NSError?) -> Void) {
+        PDDownloader.sharedDownloader.requestData(targetUrl) { (file, error) in
+            if error != nil {
+                complete(nil, error)
+            } else {
+                PDDataParser.sharedParser.parseDetailVideo(file!, complete: { (vItem, error) in
+                    complete(vItem, error)
+                })
+            }
+        }
+    }
+    
     func doRequest() {
         PDDownloader.sharedDownloader.requestData(self.curRequestUrl()) { (file, error) in
             if file != nil {

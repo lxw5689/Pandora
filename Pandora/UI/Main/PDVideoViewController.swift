@@ -41,10 +41,31 @@ class PDVideoViewController: UICollectionViewController {
         
         PDVideoManager.sharedManager.refleshData()
         
+        self.collectionView?.addLoadMoreAction(){
+            PDVideoManager.sharedManager.getNextPage()
+        }
     }
     
     func updateUI() {
-        self.collectionView?.reloadData()
+        let dataSource = PDVideoManager.sharedManager.dataSource
+        if dataSource.isReflesh() {
+            self.collectionView?.reloadData()
+        } else {
+            let beginIndex = (dataSource.mediaItemCount() - dataSource.newAppendCount())
+            var indexPathArr: Array<NSIndexPath> = Array<NSIndexPath>()
+            
+            for index in beginIndex ..< dataSource.mediaItemCount() {
+                let indexPath = NSIndexPath(forItem: index, inSection: 0)
+                indexPathArr.append(indexPath)
+            }
+            self.collectionView?.insertItemsAtIndexPaths(indexPathArr)
+        }
+        
+        /*if self.refleshControl != nil && self.refleshControl!.refreshing {
+            self.refleshControl?.endRefreshing()
+        } else */if let clView = self.collectionView where clView.isLoadingMore {
+            clView.stopLoadMore(PDMPhotoManager.sharedManager.hasMore)
+        }
     }
     
     override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
@@ -67,4 +88,17 @@ class PDVideoViewController: UICollectionViewController {
         return cell
     }
     
+    override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        let item = PDVideoManager.sharedManager.dataSource.mediaItemDataArr()![indexPath.item] as! PDVideoItem
+        
+        if item.target != nil {
+//            PDVideoManager.sharedManager.requestDetailVideo(item.target!) { (vItem, error) in
+//                
+//            }
+            let detailVC = PDVideoDetailViewController.instanceFromNib()
+            detailVC.targetUrl = item.target!
+            
+            self.navigationController?.pushViewController(detailVC, animated: true);
+        }
+    }
 }
