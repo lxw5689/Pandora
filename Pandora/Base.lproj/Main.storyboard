@@ -257,18 +257,48 @@
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vBy-UP-Vub">
+                                        <rect key="frame" x="20" y="540" width="30" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="mmg-Sa-SVz"/>
+                                            <constraint firstAttribute="width" constant="30" id="yBa-k6-KsK"/>
+                                        </constraints>
+                                        <state key="normal" backgroundImage="close"/>
+                                        <connections>
+                                            <action selector="closeAction:" destination="kWg-7f-uhr" eventType="touchUpInside" id="YW7-fd-rrq"/>
+                                        </connections>
+                                    </button>
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wwi-vP-aIC">
+                                        <rect key="frame" x="270" y="260" width="60" height="60"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="60" id="Kah-wj-cpF"/>
+                                            <constraint firstAttribute="width" constant="60" id="Qhq-8U-3Pz"/>
+                                        </constraints>
+                                        <state key="normal" backgroundImage="play"/>
+                                        <connections>
+                                            <action selector="playBtnAction:" destination="kWg-7f-uhr" eventType="touchUpInside" id="RQX-Fv-yqy"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <gestureRecognizers/>
                                 <constraints>
                                     <constraint firstItem="Ble-XG-Pdf" firstAttribute="top" secondItem="Dpl-dT-FBp" secondAttribute="bottom" constant="14" id="9O8-sL-CyQ"/>
+                                    <constraint firstItem="wwi-vP-aIC" firstAttribute="centerY" secondItem="0NI-sk-VXL" secondAttribute="centerY" id="FcB-lD-bye"/>
+                                    <constraint firstItem="vBy-UP-Vub" firstAttribute="leading" secondItem="0NI-sk-VXL" secondAttribute="leading" constant="20" id="PIn-Li-tk4"/>
                                     <constraint firstItem="Ble-XG-Pdf" firstAttribute="centerX" secondItem="Dpl-dT-FBp" secondAttribute="centerX" id="W4y-hB-GxW"/>
                                     <constraint firstItem="Dpl-dT-FBp" firstAttribute="centerY" secondItem="0NI-sk-VXL" secondAttribute="centerY" id="pN6-OV-TW0"/>
                                     <constraint firstItem="Dpl-dT-FBp" firstAttribute="centerX" secondItem="0NI-sk-VXL" secondAttribute="centerX" id="r6n-oY-nme"/>
+                                    <constraint firstItem="wwi-vP-aIC" firstAttribute="centerX" secondItem="0NI-sk-VXL" secondAttribute="centerX" id="uta-g0-u5n"/>
+                                    <constraint firstAttribute="bottom" secondItem="vBy-UP-Vub" secondAttribute="bottom" constant="10" id="v5k-6J-xo6"/>
                                 </constraints>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="Btc-pL-GhD" appends="YES" id="7Wg-WG-fpV"/>
+                                </connections>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jo0-7k-ZbG" customClass="PDVideoProgressBar" customModule="Pandora" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="20" width="600" height="27"/>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="27" id="dR2-aP-C0y"/>
                                     <constraint firstAttribute="height" constant="27" id="mrF-fL-INK"/>
@@ -292,15 +322,22 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="closeBtn" destination="vBy-UP-Vub" id="PKr-wb-aBA"/>
                         <outlet property="loadingView" destination="Dpl-dT-FBp" id="Csa-Ms-vyz"/>
+                        <outlet property="playBtn" destination="wwi-vP-aIC" id="vMi-iB-Res"/>
                         <outlet property="progressBar" destination="Jo0-7k-ZbG" id="7gP-rB-33g"/>
                         <outlet property="tipsLabel" destination="Ble-XG-Pdf" id="HEU-Vg-2zc"/>
                         <outlet property="videoView" destination="0NI-sk-VXL" id="INc-XN-60T"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XMb-oB-57V" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer numberOfTapsRequired="2" id="Btc-pL-GhD">
+                    <connections>
+                        <action selector="onVideoViewTap:" destination="kWg-7f-uhr" id="HDn-pz-k4f"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1641" y="665"/>
+            <point key="canvasLocation" x="1881" y="684"/>
         </scene>
         <!--Photo Detail View Controller-->
         <scene sceneID="9tj-Ss-LKX">
@@ -377,4 +414,8 @@
             <point key="canvasLocation" x="-311" y="8"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="close" width="32" height="32"/>
+        <image name="play" width="256" height="256"/>
+    </resources>
 </document>
