@@ -17,6 +17,9 @@ class PDVideoDetailViewController: UIViewController {
     @IBOutlet weak var progressBar: PDVideoProgressBar!
     @IBOutlet weak var tipsLabel: UILabel!
     
+    let presentAnimator = PDVideoDetailPresentAnimator()
+    let dismissAnimator = PDVideoDetailDismissAnimator()
+    
     enum PDPlayerStatus {
         case UnSet, Loading, Play, Pause, Finish
     }
@@ -41,6 +44,7 @@ class PDVideoDetailViewController: UIViewController {
                 }
             } else if playStatus == .Loading {
                 playBtn.hidden = true
+                self.showToolAnimated(true)
             }
         }
     }
@@ -51,9 +55,17 @@ class PDVideoDetailViewController: UIViewController {
         
         return videoDetailVC
     }
+        
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return .LightContent
+    }
+    
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        print("hhh")
+    }
     
     @IBAction func closeAction(sender: AnyObject) {
-        self.navigationController?.popViewControllerAnimated(true)
+        self.dismissViewControllerAnimated(true, completion: nil)
     }
     
     @IBAction func playBtnAction(sender: AnyObject) {
@@ -69,7 +81,7 @@ class PDVideoDetailViewController: UIViewController {
         }
     }
     @IBAction func onVideoViewTap(sender: UITapGestureRecognizer) {
-        guard !isAnimating && !(playStatus == .Loading) else {
+        guard !isAnimating else {
             return
         }
         self.showToolAnimated(!isShowingTool)
@@ -84,7 +96,7 @@ class PDVideoDetailViewController: UIViewController {
     
     func showToolAnimated(show: Bool) {
         
-        guard show != isShowingTool else {
+        guard show != isShowingTool && !isAnimating else {
             return
         }
         
@@ -108,7 +120,9 @@ class PDVideoDetailViewController: UIViewController {
                                             self.playBtn.alpha = 1
                                         }
                 }, completion: { (finish) in
-                    self.delayHideTool()
+                    if self.playStatus == .Play  && !self.progressBar.seekingTime {
+                        self.delayHideTool()
+                    }
                     self.isAnimating = false
             })
         } else {
@@ -140,9 +154,7 @@ class PDVideoDetailViewController: UIViewController {
     
     func delayHideTool() {
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (Int64(NSEC_PER_SEC) * 5)), dispatch_get_main_queue(), { () -> Void in
-            if self.playStatus != .Pause  && !self.progressBar.seekingTime{
                 self.showToolAnimated(false)
-            }
         })
     }
     override func viewDidLoad() {
@@ -158,6 +170,8 @@ class PDVideoDetailViewController: UIViewController {
             [weak self] progres in
             self?.updateProgress(progres)
         }
+        
+        self.transitioningDelegate = self
     }
     
     func updateProgress(progres: CGFloat) {
@@ -262,6 +276,7 @@ class PDVideoDetailViewController: UIViewController {
                     player.play()
                     loadingView.stopAnimating()
                     playStatus = .Play
+                    progressBar.seekEnable = true
                 }
             }
         }
@@ -291,6 +306,7 @@ class PDVideoDetailViewController: UIViewController {
                         player.play()
                         loadingView.stopAnimating()
                         playStatus = .Play
+                        progressBar.seekEnable = true
                     }
                 }
             }
@@ -305,5 +321,16 @@ class PDVideoDetailViewController: UIViewController {
                 }
             }
         }
+    }
+}
+
+//MARK: UIViewControllerTransitioningDelegate
+extension PDVideoDetailViewController: UIViewControllerTransitioningDelegate {
+    func animationControllerForPresentedController(presented: UIViewController, presentingController presenting: UIViewController, sourceController source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return presentAnimator
+    }
+    
+    func animationControllerForDismissedController(dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return dismissAnimator
     }
 }

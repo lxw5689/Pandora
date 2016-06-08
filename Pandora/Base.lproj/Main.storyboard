@@ -310,7 +310,7 @@
                                 </variation>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="Jo0-7k-ZbG" firstAttribute="leading" secondItem="uht-uO-C57" secondAttribute="leading" id="8zq-l6-Tgr"/>
                             <constraint firstAttribute="trailing" secondItem="0NI-sk-VXL" secondAttribute="trailing" id="JNg-yL-Gw2"/>

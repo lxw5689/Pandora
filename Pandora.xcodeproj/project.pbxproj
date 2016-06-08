@@ -13,21 +13,15 @@
 		9E2CD2E81CB01014008F8C24 /* PDMLoadMoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E2CD2E71CB01014008F8C24 /* PDMLoadMoreView.swift */; };
 		9E2CD2EA1CB01491008F8C24 /* PDCollectionViewLoadMore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E2CD2E91CB01491008F8C24 /* PDCollectionViewLoadMore.swift */; };
 		9E3B6E9E1CB146FB004AA314 /* PDMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E3B6E9A1CB146FB004AA314 /* PDMainViewController.swift */; };
-		9E3B6E9F1CB146FB004AA314 /* PDMediaItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E3B6E9B1CB146FB004AA314 /* PDMediaItemCell.swift */; };
-		9E3B6EA01CB146FB004AA314 /* PDPhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E3B6E9C1CB146FB004AA314 /* PDPhotoViewController.swift */; };
-		9E3B6EA11CB146FB004AA314 /* PDVideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E3B6E9D1CB146FB004AA314 /* PDVideoViewController.swift */; };
 		9E3B6EA41CB148C0004AA314 /* PDPhotoDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E3B6EA31CB148C0004AA314 /* PDPhotoDetailViewController.swift */; };
 		9E3B6EA61CB151F2004AA314 /* PDPhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E3B6EA51CB151F2004AA314 /* PDPhotoCell.swift */; };
 		9E3B6EA81CB1630A004AA314 /* PDPhotoDetailManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E3B6EA71CB1630A004AA314 /* PDPhotoDetailManager.swift */; };
 		9E4409531CAD77F100032A2C /* PDUIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E4409521CAD77F100032A2C /* PDUIImageView.swift */; };
 		9E451A2F1CC3379400FABBBD /* PDProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E451A2E1CC3379400FABBBD /* PDProgressView.swift */; };
 		9E50B0481CA97CF0008F673A /* PDMPhotoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E50B0471CA97CF0008F673A /* PDMPhotoManager.swift */; };
-		9E6E0EB91CF09AC400AECB00 /* PDVideoDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E6E0EB81CF09AC400AECB00 /* PDVideoDetailViewController.swift */; };
 		9E8FF40C1CDE2C45006D7CE7 /* PDDataParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E8FF40B1CDE2C45006D7CE7 /* PDDataParser.swift */; };
 		9E8FF40E1CDF724E006D7CE7 /* PDVideoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E8FF40D1CDF724E006D7CE7 /* PDVideoManager.swift */; };
 		9E8FF4101CDF7736006D7CE7 /* PDVideoDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E8FF40F1CDF7736006D7CE7 /* PDVideoDataSource.swift */; };
-		9E9011281CF9CC0C00097BE4 /* PDVideoProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E9011271CF9CC0C00097BE4 /* PDVideoProgressBar.swift */; };
-		9E9F080C1CF9952000E81231 /* PDVideoPlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E9F080B1CF9952000E81231 /* PDVideoPlayView.swift */; };
 		9EA1F7F51CA7BDF300D4C4D8 /* PDDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EA1F7F41CA7BDF300D4C4D8 /* PDDownloader.swift */; };
 		9EA1F7F71CA7C2B500D4C4D8 /* PDDownloadCacher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EA1F7F61CA7C2B500D4C4D8 /* PDDownloadCacher.swift */; };
 		9EB30FF21CBFEB0100E555DA /* PDPhotoCellEx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EB30FF11CBFEB0100E555DA /* PDPhotoCellEx.swift */; };
@@ -42,6 +36,13 @@
 		9EDB0EAB1C9D42C300B0F791 /* PDVideoItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EDB0EAA1C9D42C300B0F791 /* PDVideoItem.swift */; };
 		9EDB0EB21C9D7FC900B0F791 /* PDMediaCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EDB0EB11C9D7FC900B0F791 /* PDMediaCollectionViewLayout.swift */; };
 		9EDB0EB41C9E4F5800B0F791 /* PDMediaPhotoDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EDB0EB31C9E4F5800B0F791 /* PDMediaPhotoDataSource.swift */; };
+		9EFE96131D085B620061D399 /* PDMediaItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EFE960B1D085B620061D399 /* PDMediaItemCell.swift */; };
+		9EFE96141D085B620061D399 /* PDPhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EFE960C1D085B620061D399 /* PDPhotoViewController.swift */; };
+		9EFE96151D085B620061D399 /* PDVideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EFE960E1D085B620061D399 /* PDVideoViewController.swift */; };
+		9EFE96161D085B620061D399 /* PDVideoDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EFE96101D085B620061D399 /* PDVideoDetailViewController.swift */; };
+		9EFE96171D085B620061D399 /* PDVideoPlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EFE96111D085B620061D399 /* PDVideoPlayView.swift */; };
+		9EFE96181D085B620061D399 /* PDVideoProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EFE96121D085B620061D399 /* PDVideoProgressBar.swift */; };
+		9EFE961A1D085B950061D399 /* PDVideoDetailAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EFE96191D085B950061D399 /* PDVideoDetailAnimator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,21 +62,15 @@
 		9E2CD2E71CB01014008F8C24 /* PDMLoadMoreView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PDMLoadMoreView.swift; sourceTree = "<group>"; };
 		9E2CD2E91CB01491008F8C24 /* PDCollectionViewLoadMore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PDCollectionViewLoadMore.swift; sourceTree = "<group>"; };
 		9E3B6E9A1CB146FB004AA314 /* PDMainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PDMainViewController.swift; sourceTree = "<group>"; };
-		9E3B6E9B1CB146FB004AA314 /* PDMediaItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PDMediaItemCell.swift; sourceTree = "<group>"; };
-		9E3B6E9C1CB146FB004AA314 /* PDPhotoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PDPhotoViewController.swift; sourceTree = "<group>"; };
-		9E3B6E9D1CB146FB004AA314 /* PDVideoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PDVideoViewController.swift; sourceTree = "<group>"; };
 		9E3B6EA31CB148C0004AA314 /* PDPhotoDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PDPhotoDetailViewController.swift; sourceTree = "<group>"; };
 		9E3B6EA51CB151F2004AA314 /* PDPhotoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PDPhotoCell.swift; sourceTree = "<group>"; };
 		9E3B6EA71CB1630A004AA314 /* PDPhotoDetailManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PDPhotoDetailManager.swift; sourceTree = "<group>"; };
 		9E4409521CAD77F100032A2C /* PDUIImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PDUIImageView.swift; sourceTree = "<group>"; };
 		9E451A2E1CC3379400FABBBD /* PDProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PDProgressView.swift; sourceTree = "<group>"; };
 		9E50B0471CA97CF0008F673A /* PDMPhotoManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PDMPhotoManager.swift; sourceTree = "<group>"; };
-		9E6E0EB81CF09AC400AECB00 /* PDVideoDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PDVideoDetailViewController.swift; sourceTree = "<group>"; };
 		9E8FF40B1CDE2C45006D7CE7 /* PDDataParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PDDataParser.swift; sourceTree = "<group>"; };
 		9E8FF40D1CDF724E006D7CE7 /* PDVideoManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PDVideoManager.swift; sourceTree = "<group>"; };
 		9E8FF40F1CDF7736006D7CE7 /* PDVideoDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PDVideoDataSource.swift; sourceTree = "<group>"; };
-		9E9011271CF9CC0C00097BE4 /* PDVideoProgressBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PDVideoProgressBar.swift; sourceTree = "<group>"; };
-		9E9F080B1CF9952000E81231 /* PDVideoPlayView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PDVideoPlayView.swift; sourceTree = "<group>"; };
 		9EA1F7F41CA7BDF300D4C4D8 /* PDDownloader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PDDownloader.swift; sourceTree = "<group>"; };
 		9EA1F7F61CA7C2B500D4C4D8 /* PDDownloadCacher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PDDownloadCacher.swift; sourceTree = "<group>"; };
 		9EB30FF11CBFEB0100E555DA /* PDPhotoCellEx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PDPhotoCellEx.swift; sourceTree = "<group>"; };
@@ -94,6 +89,13 @@
 		9EDB0EAA1C9D42C300B0F791 /* PDVideoItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PDVideoItem.swift; sourceTree = "<group>"; };
 		9EDB0EB11C9D7FC900B0F791 /* PDMediaCollectionViewLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PDMediaCollectionViewLayout.swift; sourceTree = "<group>"; };
 		9EDB0EB31C9E4F5800B0F791 /* PDMediaPhotoDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PDMediaPhotoDataSource.swift; sourceTree = "<group>"; };
+		9EFE960B1D085B620061D399 /* PDMediaItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PDMediaItemCell.swift; sourceTree = "<group>"; };
+		9EFE960C1D085B620061D399 /* PDPhotoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PDPhotoViewController.swift; sourceTree = "<group>"; };
+		9EFE960E1D085B620061D399 /* PDVideoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PDVideoViewController.swift; sourceTree = "<group>"; };
+		9EFE96101D085B620061D399 /* PDVideoDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PDVideoDetailViewController.swift; sourceTree = "<group>"; };
+		9EFE96111D085B620061D399 /* PDVideoPlayView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PDVideoPlayView.swift; sourceTree = "<group>"; };
+		9EFE96121D085B620061D399 /* PDVideoProgressBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PDVideoProgressBar.swift; sourceTree = "<group>"; };
+		9EFE96191D085B950061D399 /* PDVideoDetailAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PDVideoDetailAnimator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -127,14 +129,11 @@
 		9E3B6E991CB146FB004AA314 /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				9EFE960A1D085B620061D399 /* Photo */,
+				9EFE960D1D085B620061D399 /* Video */,
+				9EFE960F1D085B620061D399 /* VideoDetail */,
 				9E3B6EA21CB147A0004AA314 /* PhotoDetail */,
 				9E3B6E9A1CB146FB004AA314 /* PDMainViewController.swift */,
-				9E3B6E9B1CB146FB004AA314 /* PDMediaItemCell.swift */,
-				9E3B6E9C1CB146FB004AA314 /* PDPhotoViewController.swift */,
-				9E3B6E9D1CB146FB004AA314 /* PDVideoViewController.swift */,
-				9E6E0EB81CF09AC400AECB00 /* PDVideoDetailViewController.swift */,
-				9E9F080B1CF9952000E81231 /* PDVideoPlayView.swift */,
-				9E9011271CF9CC0C00097BE4 /* PDVideoProgressBar.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -271,6 +270,34 @@
 			path = Layout;
 			sourceTree = "<group>";
 		};
+		9EFE960A1D085B620061D399 /* Photo */ = {
+			isa = PBXGroup;
+			children = (
+				9EFE960B1D085B620061D399 /* PDMediaItemCell.swift */,
+				9EFE960C1D085B620061D399 /* PDPhotoViewController.swift */,
+			);
+			path = Photo;
+			sourceTree = "<group>";
+		};
+		9EFE960D1D085B620061D399 /* Video */ = {
+			isa = PBXGroup;
+			children = (
+				9EFE960E1D085B620061D399 /* PDVideoViewController.swift */,
+			);
+			path = Video;
+			sourceTree = "<group>";
+		};
+		9EFE960F1D085B620061D399 /* VideoDetail */ = {
+			isa = PBXGroup;
+			children = (
+				9EFE96101D085B620061D399 /* PDVideoDetailViewController.swift */,
+				9EFE96111D085B620061D399 /* PDVideoPlayView.swift */,
+				9EFE96121D085B620061D399 /* PDVideoProgressBar.swift */,
+				9EFE96191D085B950061D399 /* PDVideoDetailAnimator.swift */,
+			);
+			path = VideoDetail;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -382,32 +409,33 @@
 			files = (
 				9EDB0EA91C9D41FB00B0F791 /* PDPhotoItem.swift in Sources */,
 				9EDB0EB41C9E4F5800B0F791 /* PDMediaPhotoDataSource.swift in Sources */,
-				9E3B6EA01CB146FB004AA314 /* PDPhotoViewController.swift in Sources */,
 				9E2CD2E31CAFC58C008F8C24 /* PDUtility.swift in Sources */,
-				9E3B6E9F1CB146FB004AA314 /* PDMediaItemCell.swift in Sources */,
+				9EFE96151D085B620061D399 /* PDVideoViewController.swift in Sources */,
 				9E50B0481CA97CF0008F673A /* PDMPhotoManager.swift in Sources */,
 				9E2CD2E81CB01014008F8C24 /* PDMLoadMoreView.swift in Sources */,
+				9EFE961A1D085B950061D399 /* PDVideoDetailAnimator.swift in Sources */,
 				9EB30FF21CBFEB0100E555DA /* PDPhotoCellEx.swift in Sources */,
 				9EA1F7F51CA7BDF300D4C4D8 /* PDDownloader.swift in Sources */,
 				9E8FF40E1CDF724E006D7CE7 /* PDVideoManager.swift in Sources */,
-				9E9F080C1CF9952000E81231 /* PDVideoPlayView.swift in Sources */,
 				9EBD49671C9552F3007B7F50 /* AppDelegate.swift in Sources */,
+				9EFE96171D085B620061D399 /* PDVideoPlayView.swift in Sources */,
 				9E1730531CCB7647000105B1 /* PDPhotoDetailAnimator.swift in Sources */,
 				9E8FF40C1CDE2C45006D7CE7 /* PDDataParser.swift in Sources */,
 				9E4409531CAD77F100032A2C /* PDUIImageView.swift in Sources */,
 				9EDB0EB21C9D7FC900B0F791 /* PDMediaCollectionViewLayout.swift in Sources */,
-				9E9011281CF9CC0C00097BE4 /* PDVideoProgressBar.swift in Sources */,
-				9E6E0EB91CF09AC400AECB00 /* PDVideoDetailViewController.swift in Sources */,
 				9E451A2F1CC3379400FABBBD /* PDProgressView.swift in Sources */,
+				9EFE96181D085B620061D399 /* PDVideoProgressBar.swift in Sources */,
+				9EFE96161D085B620061D399 /* PDVideoDetailViewController.swift in Sources */,
 				9EDB0EA71C9D35B800B0F791 /* PDMediaItem.swift in Sources */,
-				9E3B6EA11CB146FB004AA314 /* PDVideoViewController.swift in Sources */,
 				9E3B6EA81CB1630A004AA314 /* PDPhotoDetailManager.swift in Sources */,
 				9EBD498A1C959FBE007B7F50 /* ImageTools.swift in Sources */,
 				9E3B6E9E1CB146FB004AA314 /* PDMainViewController.swift in Sources */,
+				9EFE96131D085B620061D399 /* PDMediaItemCell.swift in Sources */,
 				9EA1F7F71CA7C2B500D4C4D8 /* PDDownloadCacher.swift in Sources */,
 				9EDB0EAB1C9D42C300B0F791 /* PDVideoItem.swift in Sources */,
 				9E3B6EA41CB148C0004AA314 /* PDPhotoDetailViewController.swift in Sources */,
 				9E3B6EA61CB151F2004AA314 /* PDPhotoCell.swift in Sources */,
+				9EFE96141D085B620061D399 /* PDPhotoViewController.swift in Sources */,
 				9E8FF4101CDF7736006D7CE7 /* PDVideoDataSource.swift in Sources */,
 				9E2CD2EA1CB01491008F8C24 /* PDCollectionViewLoadMore.swift in Sources */,
 			);

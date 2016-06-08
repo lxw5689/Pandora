@@ -39,12 +39,18 @@ class PDVideoProgressBar: UIView {
     var time: Int = 0
     var timeBarRect: CGRect = CGRectZero
     var progressChangeHandler: PDProgressChangeHandler? = nil
+    var seekEnable: Bool = false {
+        didSet {
+            self.userInteractionEnabled = seekEnable
+        }
+    }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         
         let panGesture = UIPanGestureRecognizer(target: self, action: #selector(PDVideoProgressBar.panGestureAction))
         self.addGestureRecognizer(panGesture)
+        self.userInteractionEnabled = false
     }
     
     func panGestureAction(gesture: UIPanGestureRecognizer) {

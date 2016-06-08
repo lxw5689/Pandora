@@ -92,13 +92,17 @@ class PDVideoViewController: UICollectionViewController {
         let item = PDVideoManager.sharedManager.dataSource.mediaItemDataArr()![indexPath.item] as! PDVideoItem
         
         if item.target != nil {
-//            PDVideoManager.sharedManager.requestDetailVideo(item.target!) { (vItem, error) in
-//                
-//            }
+            
+            let cell = collectionView.cellForItemAtIndexPath(indexPath)
+            let fr = collectionView.convertRect(cell!.frame, toView: self.view.window!)
+            let frImage = (cell as? PDMediaItemCell)?.coverView.image
+            
             let detailVC = PDVideoDetailViewController.instanceFromNib()
             detailVC.targetUrl = item.target!
+            detailVC.presentAnimator.fromRect = fr
+            detailVC.presentAnimator.fromImage = frImage
             
-            self.navigationController?.pushViewController(detailVC, animated: true);
+            self.presentViewController(detailVC, animated: true, completion: nil)
         }
     }
 }
