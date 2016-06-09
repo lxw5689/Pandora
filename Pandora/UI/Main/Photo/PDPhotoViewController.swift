@@ -40,12 +40,12 @@ class PDPhotoViewController: UICollectionViewController {
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
         
-        let refleshControl = UIRefreshControl()
-        refleshControl.tintColor = UIColor.colorWithHexString("D8AF96")
-        refleshControl.attributedTitle = NSAttributedString(string: "加载中...")
-        refleshControl.addTarget(self, action: #selector(PDPhotoViewController.onReflesh), forControlEvents: .ValueChanged)
-        self.collectionView?.addSubview(refleshControl)
-        self.refleshControl = refleshControl
+//        let refleshControl = UIRefreshControl()
+//        refleshControl.tintColor = UIColor.colorWithHexString("D8AF96")
+//        refleshControl.attributedTitle = NSAttributedString(string: "加载中...")
+//        refleshControl.addTarget(self, action: #selector(PDPhotoViewController.onReflesh), forControlEvents: .ValueChanged)
+//        self.collectionView?.addSubview(refleshControl)
+//        self.refleshControl = refleshControl
         
         // Register cell classes
         self.layout = PDMediaCollectionViewLayout(col: 3, dataSource: nil)
@@ -61,8 +61,11 @@ class PDPhotoViewController: UICollectionViewController {
         self.dataSource = PDMPhotoManager.sharedManager.phDataSource
         self.layout?.dataSource = self.dataSource
         
-        self.refleshControl?.beginRefreshing()
-        self.onReflesh()
+//        self.refleshControl?.beginRefreshing()
+//        self.onReflesh()
+        self.collectionView?.addRefleshAction({ [weak self] in
+            self?.onReflesh()
+        })
         
         self.collectionView?.addLoadMoreAction(){
             PDMPhotoManager.sharedManager.getNextPageData()
@@ -73,6 +76,7 @@ class PDPhotoViewController: UICollectionViewController {
     func updateUI() {
         
         if self.dataSource!.isReflesh() {
+            self.collectionView?.stopReflesh()
             self.collectionView?.reloadData()
         } else {
             let beginIndex = (self.dataSource!.mediaItemCount() - self.dataSource!.newAppendCount())

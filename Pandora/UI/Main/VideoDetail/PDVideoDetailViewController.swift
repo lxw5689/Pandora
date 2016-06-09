@@ -60,10 +60,6 @@ class PDVideoDetailViewController: UIViewController {
         return .LightContent
     }
     
-    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        print("hhh")
-    }
-    
     @IBAction func closeAction(sender: AnyObject) {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
