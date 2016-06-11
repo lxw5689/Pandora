@@ -8,14 +8,14 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="PDRefleshView" customModule="Pandora" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="600" height="79"/>
+            <rect key="frame" x="0.0" y="0.0" width="600" height="80"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="WWh-oY-bov">
-                    <rect key="frame" x="290" y="15" width="20" height="20"/>
+                    <rect key="frame" x="290" y="17" width="20" height="20"/>
                 </activityIndicatorView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WMM-v5-Gbo">
-                    <rect key="frame" x="281.5" y="43" width="37.5" height="18"/>
+                    <rect key="frame" x="282" y="45" width="37.5" height="18"/>
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
@@ -24,7 +24,7 @@
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="WWh-oY-bov" firstAttribute="centerX" secondItem="WMM-v5-Gbo" secondAttribute="centerX" id="UX1-e9-9HD"/>
-                <constraint firstItem="WWh-oY-bov" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="15" id="obu-ue-pFS"/>
+                <constraint firstItem="WWh-oY-bov" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="17" id="obu-ue-pFS"/>
                 <constraint firstItem="WWh-oY-bov" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="sqk-UD-M0D"/>
                 <constraint firstItem="WMM-v5-Gbo" firstAttribute="top" secondItem="WWh-oY-bov" secondAttribute="bottom" constant="8" symbolic="YES" id="wDq-Uk-2J9"/>
             </constraints>

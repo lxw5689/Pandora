@@ -39,16 +39,21 @@ class PDVideoViewController: UICollectionViewController {
         self.layout = PDMediaCollectionViewLayout(col: 2, dataSource: PDVideoManager.sharedManager.dataSource)
         self.collectionView?.collectionViewLayout = self.layout
         
-        PDVideoManager.sharedManager.refleshData()
+        self.collectionView?.addRefleshAction({
+            PDVideoManager.sharedManager.refleshData()
+        })
         
         self.collectionView?.addLoadMoreAction(){
             PDVideoManager.sharedManager.getNextPage()
         }
+        
+        self.collectionView?.triggerReflesh()
     }
     
     func updateUI() {
         let dataSource = PDVideoManager.sharedManager.dataSource
         if dataSource.isReflesh() {
+            self.collectionView?.stopReflesh()
             self.collectionView?.reloadData()
         } else {
             let beginIndex = (dataSource.mediaItemCount() - dataSource.newAppendCount())

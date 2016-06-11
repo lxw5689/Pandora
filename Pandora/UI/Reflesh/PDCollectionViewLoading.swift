@@ -12,7 +12,7 @@ import UIKit
 //MARK: uicollection view load more
 extension UICollectionView {
     
-    private static let refleshHeaderHeight = 64
+    private static let refleshHeaderHeight = 80
     private static let threshold = 40
     
     private struct PropertyAssociateKey {
@@ -136,6 +136,20 @@ extension UICollectionView {
         return self.refleshView?.state == PDRefleshView.PDRefleshState.Loading
     }
     
+    func triggerReflesh() {
+        guard self.refleshView != nil else {
+            return
+        }
+        
+        self.refleshView?.state = PDRefleshView.PDRefleshState.Loading
+        dispatch_async(dispatch_get_main_queue()) { 
+            self.setContentOffset(CGPoint(x: 0, y: self.contentInset.top - self.contentInset.bottom - CGFloat(UICollectionView.refleshHeaderHeight)), animated: true)
+            if self.refleshAction != nil {
+                self.refleshAction!()
+            }
+        }
+    }
+    
     func stopReflesh() {
         self.refleshView?.state = PDRefleshView.PDRefleshState.Finish
         let offsetY = self.contentOffset.y + self.contentInset.top - self.contentInset.bottom
@@ -177,7 +191,7 @@ extension UICollectionView {
         
         if offsetY < 0 {
             var state = PDRefleshView.PDRefleshState.Pulling
-            if (Int(offsetY) <= -UICollectionView.refleshHeaderHeight / 2) {
+            if (Int(offsetY) <= -60) {
                 state = self.decelerating ? PDRefleshView.PDRefleshState.Loading : PDRefleshView.PDRefleshState.ReleasePullingToReflesh
                 if state == PDRefleshView.PDRefleshState.Loading  && curState != state {
                     self.setContentOffset(CGPoint(x: 0, y: self.contentInset.top - self.contentInset.bottom - CGFloat(UICollectionView.refleshHeaderHeight)), animated: true)

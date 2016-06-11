@@ -149,9 +149,11 @@ class PDVideoDetailViewController: UIViewController {
     }
     
     func delayHideTool() {
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (Int64(NSEC_PER_SEC) * 5)), dispatch_get_main_queue(), { () -> Void in
-                self.showToolAnimated(false)
-        })
+        NSObject.cancelPreviousPerformRequestsWithTarget(self)
+        self.performSelector(#selector(PDVideoDetailViewController.showToolAnimated(_:)), withObject: NSNumber.init(bool: false), afterDelay: 5, inModes: [NSDefaultRunLoopMode])
+//        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (Int64(NSEC_PER_SEC) * 5)), dispatch_get_main_queue(), { () -> Void in
+//                self.showToolAnimated(false)
+//        })
     }
     override func viewDidLoad() {
         super.viewDidLoad()
